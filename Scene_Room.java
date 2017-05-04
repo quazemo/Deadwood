@@ -1,8 +1,11 @@
-public class Scene_Room extends Scene {
-	public Scene_Room() {
-	}
+public class Scene_Room {
 	// attributes
-	int shotCoutner;
+	int shotCounter;
+
+	// constructor
+	public Scene_Room() {
+		shotCounter = 0;
+	}
 
 	// methods
 	int payPlayer() {
@@ -10,6 +13,16 @@ public class Scene_Room extends Scene {
 	}
 	//
 	void updateRoom() {
+	}
 
+	// setters
+	void setCounter(int newCount) {
+		this.shotCounter = newCount;
+	}
+	//
+	// getters
+	int getShotCount() {
+		int currCount = this.shotCounter;
+		return currCount;
 	}
 }
