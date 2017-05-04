@@ -7,9 +7,9 @@ public class Game_Board {
 
 	// methods
 	//
-	String getStartLoc(Room loc) {
-		String startLocation = "Location";
-		return startLocation;
+	String getStarLoc(Room loc) {
+		String starLocation = "starLoc";
+		return starLocation;
 	}
 	//
 	String getExtraLoc(Room loc) {
