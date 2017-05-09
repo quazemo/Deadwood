@@ -3,7 +3,7 @@ public class Scene {
 	// attributes
 	int budget;
 	boolean sceneAvailable;
-	ArrayList<Role> availableRoles; 
+	ArrayList<Role> availableRoles;
 	String sceneName;
 
 	// constructor
@@ -18,6 +18,15 @@ public class Scene {
 	//
 	void closeRoles() {
 		// remove from availableRoles list
+	}
+	void update() {
+		if (counter == 0) {
+			wrap();
+		}
+	}
+	//
+	void wrap() {
+
 	}
 	// setters
 	void setBudget(int sceneBudget) {
@@ -37,7 +46,7 @@ public class Scene {
 	}
 	// getters
 	//
-	int setBudget() {
+	int getBudget() {
 		int currBudget = this.budget;
 		return currBudget;
 	}

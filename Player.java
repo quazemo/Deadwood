@@ -27,8 +27,9 @@ public class Player {
 
 	}
 	//
-	int rollDie() {
-		return 0;
+	void rollDie() {
+		Die dice = new Die();
+		dice.generateRandomNumber();
 	}
 	//
 	int spend() {

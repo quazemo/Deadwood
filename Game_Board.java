@@ -1,4 +1,4 @@
 public class Game_Board {
-	// not needed until UI is introduced
-
+  // store shot counter, die roll, dice counters etc for game board objects.
+  public static Die gameDie = new Die();
 }
