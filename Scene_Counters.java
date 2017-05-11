@@ -8,12 +8,12 @@ public class Scene_Counters {
 	}
 
 	// setters
-	void setCounter(int newCount) {
+	protected void setCounter(int newCount) {
 		this.shotCounter = newCount;
 	}
 	//
 	// getters
-	int getShotCount() {
+	public int getShotCount() {
 		int currCount = this.shotCounter;
 		return currCount;
 	}

@@ -20,26 +20,26 @@ public class Role {
 		dieRollCounter += 1;
 	}
 	//
-	void act(Scene scene, Scene_Room scene_rm, Player player) {
-		int actingChance = Game_Board.Die.getValue() + dieRollCounter;
+	void act(Scene scene, Scene_Room scene_rm, Player player, Die gbDie) {
+		int actingChance = gbDie.getValue() + dieRollCounter;
 		if (actingChance >= scene.getBudget()) {
 			// act remove a chip and credits
 			int counter = scene_rm.getShotCount();
 			counter -= 1;
 			scene_rm.setCounter(counter);
-			scene.update();
-			if (starring) {
-				payStarring(player);
-				System.out.println(player + " has received " + credits + " credits!");
+			scene.update(scene_rm);
+			if (isStar) {
+				scene.payStarring(player);
+				System.out.println(player + " has received 2 credits!");
 			} else {
-				payExtra(player);
-				System.out.println(player + " has received " + credits + " credit and " + dollars + " dollar!");
+				scene.payExtra(player);
+				System.out.println(player + " has received 1 credit and 1 dollar!");
 			}
 		} else {
 			// if role is not starring then give extra 1 dollar if failed roll
-			if (!starring) {
-				scene.payExtraFail();
-				System.out.println(player + " has received " + dollars + " dollar!");
+			if (!isStar) {
+				scene.payExtraFail(player);
+				System.out.println(player + " has received 1 dollar!");
 			} else {
 				System.out.println(player + " didn't receive 0 dollars!");
 			}

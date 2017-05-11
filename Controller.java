@@ -35,14 +35,14 @@ public class Controller {
 
 
 	}
-	//
+	// temporary game board for debugging purposes
 	static void startGame() {
 		// create all game objects
 		Controller control = new Controller();
 		Days d = new Days();
 		Die die = new Die();
 		Game_Board gb = new Game_Board();
-		Player player = new Player("bob", "trailer", 100, 0, 1);
+		//Player player = new Player("bob",, 100, 0, 1);
 		Role role1 = new Role(1, "robot1", true, false);
 		Role role2 = new Role(3, "robot2", true, false);
 		ArrayList<Role> roles = new ArrayList<Role>();
