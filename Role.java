@@ -4,6 +4,7 @@ public class Role {
 	String name;
 	boolean isStar;
 	boolean occupied;
+	int dieRollCounter;
 
 	// constructor
 	public Role(int rankNeeded, String roleName, boolean starring, boolean taken) {
@@ -11,20 +12,41 @@ public class Role {
 		name = roleName;
 		isStar = starring;
 		occupied = taken;
+		dieRollCounter = 0;
 	}
 
 	// methods
 	void rehearse() {
+		dieRollCounter += 1;
 	}
 	//
-	void act() {
+	void act(Scene scene, Scene_Room scene_rm, Player player) {
+		int actingChance = Game_Board.Die.getValue() + dieRollCounter;
+		if (actingChance >= scene.getBudget()) {
+			// act remove a chip and credits
+			int counter = scene_rm.getShotCount();
+			counter -= 1;
+			scene_rm.setCounter(counter);
+			scene.update();
+			if (starring) {
+				payStarring(player);
+				System.out.println(player + " has received " + credits + " credits!");
+			} else {
+				payExtra(player);
+				System.out.println(player + " has received " + credits + " credit and " + dollars + " dollar!");
+			}
+		} else {
+			// if role is not starring then give extra 1 dollar if failed roll
+			if (!starring) {
+				scene.payExtraFail();
+				System.out.println(player + " has received " + dollars + " dollar!");
+			} else {
+				System.out.println(player + " didn't receive 0 dollars!");
+			}
+		}
 	}
-	//
-	int payment() {
-		return 0;
-	}
+
 	// setters
-	// no setters yet
 	//
 	// getters
 	int getRank() {

@@ -9,7 +9,7 @@ public class Controller {
 	// attributes
 	int numPlayers;
 	ArrayList<Player> playerOrder = new ArrayList<Player>();
-	
+
 	// constructor
 	public Controller() {
 		numPlayers = 0;
@@ -30,8 +30,10 @@ public class Controller {
 		 */
 	}
 	//
-	void menu() {
+	void menu(Player player) {
 		// set numPlayers
+
+
 	}
 	//
 	static void startGame() {

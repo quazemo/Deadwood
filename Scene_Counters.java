@@ -1,18 +1,10 @@
-public class Scene_Room {
+public class Scene_Counters {
 	// attributes
 	int shotCounter;
 
 	// constructor
-	public Scene_Room() {
-		shotCounter = 0;
-	}
-
-	// methods
-	int payPlayer() {
-		return 0;
-	}
-	//
-	void updateRoom() {
+	public Scene_Room(int shotsNeeded) {
+		shotCounter = shotsNeeded;
 	}
 
 	// setters

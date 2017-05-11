@@ -9,12 +9,12 @@ public class Player {
 	boolean turnHasHappened;
 
 	// constructor
-	public Player(String playerName, String startLocation, int money, int creds, int playerRank) {
+	public Player(String playerName, String startLocation, int money, int creds) {
 		name = playerName;
 		location = startLocation;
 		dollars = money;
 		credits = creds;
-		rank = playerRank;
+		rank = 1;
 		roleName = "no current role"; // no role at start
 		turnHasHappened = false;
 	}
@@ -23,12 +23,13 @@ public class Player {
 
 	}
 	//
-	void chooseRole(boolean isStar) {
-
+	void chooseRole(Role role) {
+		roleName = role.getName();
 	}
 	//
-	int rollDie() {
-		return 0;
+	void rollDie() {
+		Die dice = new Die();
+		dice.generateRandomNumber();
 	}
 	//
 	int spend() {
@@ -36,63 +37,63 @@ public class Player {
 	}
 	// setters
 	//
-	void setDollars(int newCashBalance) {
+	protected void setDollars(int newCashBalance) {
 		this.dollars = newCashBalance;
 	}
 	//
-	void setCredits(int newCreditBalance) {
+	protected void setCredits(int newCreditBalance) {
 		this.credits = newCreditBalance;
 	}
 	//
-	void setRank(int newRank) {
+	protected void setRank(int newRank) {
 		this.rank = newRank;
 	}
 	//
-	void setRole(String newRole) {
+	protected void setRole(String newRole) {
 		this.roleName = newRole;
 	}
 	//
-	void setPlayerLocation(Room loc) {
-
+	protected void setPlayerLocation(Room loc) {
+		this.location = loc.getRoomName();
 	}
 	//
-	void setTurn(boolean turn) {
+	protected void setTurn(boolean turn) {
 		this.turnHasHappened = turn;
 	}
 
 	// getters
 	//
-	String getPlayerName() {
+	public String getPlayerName() {
 		String playerName = this.name;
 		return playerName;
 	}
 	//
-	int getDollars() {
+	public int getDollars() {
 		int currDollars = this.dollars;
 		return currDollars;
 	}
 	//
-	int getCredits() {
+	public int getCredits() {
 		int currCredits = this.credits;
 		return currCredits;
 	}
 	//
-	int getRank() {
+	public int getRank() {
 		int currRank = this.rank;
 		return currRank;
 	}
 	//
-	String getRole() {
+	public String getRole() {
 		String currRole = this.roleName;
 		return currRole;
 	}
 	//
-	String getPlayerLocation() {
+	public String getPlayerLocation() {
 		String playerLocation = "playerLocation";
 		return playerLocation;
 	}
 	//
-	boolean getTurn() {
+	public boolean getTurn() {
 		boolean currTurn = this.turnHasHappened;
 		return currTurn;
 	}
