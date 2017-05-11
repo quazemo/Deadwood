@@ -1,4 +1,4 @@
-public class Scene_Room {
+public class Scene_Counters {
 	// attributes
 	int shotCounter;
 

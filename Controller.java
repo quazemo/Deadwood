@@ -30,9 +30,10 @@ public class Controller {
 		 */
 	}
 	//
-	void menu() {
+	void menu(Player player) {
 		// set numPlayers
-		
+
+
 	}
 	//
 	static void startGame() {

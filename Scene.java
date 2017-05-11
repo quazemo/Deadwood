@@ -16,8 +16,9 @@ public class Scene {
 
 	// methods
 	//
-	void closeRoles() {
+	void removeRoles() {
 		// remove from availableRoles list
+
 	}
 	void update() {
 		if (counter == 0) {
@@ -25,43 +26,72 @@ public class Scene {
 		}
 	}
 	//
+	public void payStarring(Player player) {
+		// starring gets 2 credits
+		int credits = player.getCredits();
+		credits += 2;
+		player.setCredits(credits);
+	}
+	//
+	public void payExtra(Player player) {
+		// not starring gets 1 dollar and 1 credit
+		int credits = player.getCredits();
+		int dollars = player.getDollars();
+		credits += 1;
+		dollars += 1;
+		player.setCredits(credits);
+		player.setDollars(dollars);
+	}
+	//
+	public void payExtraFail(Player player) {
+		int dollars = player.getDollars();
+		dollars += 1;
+		player.setDollars(dollars);
+	}
+	//
+	public void bonusPayout(Player player, int numDice) {
+
+	}
+	//
+	// bonusPayouts
 	void wrap() {
 
 	}
+
 	// setters
-	void setBudget(int sceneBudget) {
+	protected void setBudget(int sceneBudget) {
 		this.budget = sceneBudget;
 	}
 	//
-	void setAvailableRoles(ArrayList<Role> roles) {
+	protected void setAvailableRoles(ArrayList<Role> roles) {
 		this.availableRoles = roles;
 	}
 	//
-	void setSceneName(String name) {
+	protected void setSceneName(String name) {
 		this.sceneName = name;
 	}
 	//
-	void setSceneAvailability(boolean available) {
+	protected void setSceneAvailability(boolean available) {
 		this.sceneAvailable = available;
 	}
 	// getters
 	//
-	int getBudget() {
+	public int getBudget() {
 		int currBudget = this.budget;
 		return currBudget;
 	}
 	//
-	ArrayList<Role> getavailableRoles() {
+	public ArrayList<Role> getavailableRoles() {
 		ArrayList<Role> ableRoles = this.availableRoles;
 		return ableRoles;
 	}
 	//
-	String getSceneName() {
+	public String getSceneName() {
 		String name = this.sceneName;
 		return name;
 	}
 	//
-	boolean getSceneAvailability() {
+	public boolean getSceneAvailability() {
 		boolean available = this.sceneAvailable;
 		return available;
 	}
