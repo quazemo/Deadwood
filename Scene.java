@@ -20,8 +20,9 @@ public class Scene {
 		// remove from availableRoles list
 
 	}
-	void update() {
-		if (counter == 0) {
+	void update(Scene_Room sc_rm) {
+		int shotCounter = sc_rm.getShotCount();
+		if (shotCounter == 0) {
 			wrap();
 		}
 	}
