@@ -9,7 +9,7 @@ public class Controller {
 	// attributes
 	int numPlayers;
 	ArrayList<Player> playerOrder = new ArrayList<Player>();
-	
+
 	// constructor
 	public Controller() {
 		numPlayers = 0;
