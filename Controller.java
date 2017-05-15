@@ -3,7 +3,7 @@
  * and run main which loops until days are over
  */
 import java.util.ArrayList;
-
+import java.util.Scanner;
 public class Controller {
 
 	// attributes
@@ -21,13 +21,6 @@ public class Controller {
 	public static void main(String[] args) {
 		startGame();
 		System.out.print("Successful Skeleton Initialized");
-	}
-	//
-	void createPlayers(int numPlayers) {
-		/* enter player names as input
-		 * create player objects
-		 * player order is determined here
-		 */
 	}
 	//
 	void menu(Player player) {
