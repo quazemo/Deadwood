@@ -25,19 +25,16 @@ public class Room {
 	}
 
 	// setters
-	protected void setRoomName(String name) {
-		this.roomName = name;
-	}
+	protected void setRoomName(String name) { this.roomName = name; }
 	//
-	protected void setAdjRooms(ArrayList<Room> rooms) {
-		this.adjRooms = rooms;
-	}
+	protected void setAdjRooms(ArrayList<Room> rooms) { this.adjRooms = rooms; }
 	//
 	// getters
 	public String getRoomName() {
 		String name = this.roomName;
 		return name;
 	}
+
 	//
 	public ArrayList<Room> getAdjRooms() {
 		ArrayList<Room> rooms = new ArrayList<Room>();

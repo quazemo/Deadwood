@@ -22,19 +22,26 @@ public class Player {
 		turnHasHappened = false;
 	}
 	// methods
-	//Allows Player to move to adj. rooms
+	// Allows Player to move to adj. rooms
 	void move() { //Room location
-		//get adj rooms of cur room of Player
-		//then allow player to choose which room to go to.
+		// get adj rooms of cur room of Player
+		// then allow player to choose which room to go to.
 		ArrayList<Room> adjRooms = location.getAdjRooms();
 		Scanner input = new Scanner(System.in);
 		int newLocNum = 0;
 		System.out.println("Please select the number of the room you would like to move to:\n");
+
+
+		for(int i = 0; i < adjRooms.size(); i++) {
+			System.out.println((i+1) + ": " + adjRooms.get(i));
+		}
+		/*
 		int i = 1;
 		while (i < adjRooms.size() + 1){
 			System.out.println( "(" + i + ") " + adjRooms.get(i-1));
 			i++;
 		}
+		*/
 
 		newLocNum = input.nextInt();
 		while((newLocNum > (adjRooms.size() + 1)) || (newLocNum == 0) || (newLocNum < 0)){
@@ -42,8 +49,8 @@ public class Player {
 			newLocNum = input.nextInt();
 		}
 
-		location = adjRooms.get(newLocNum-1);
-
+		location = adjRooms.get(newLocNum);
+		input.close();
 	}
 	//Allows for Player to choose a role
 	void chooseRole() {
