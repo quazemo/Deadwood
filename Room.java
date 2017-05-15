@@ -2,14 +2,20 @@ import java.util.ArrayList;
 public class Room {
 	// attributes
 	String roomName;
+	int shotCounters;
+	Card sceneCard;
 	ArrayList<Room> adjRooms;
 	ArrayList<Player> occupants;
+	ArrayList<Scene> extras;
 
 	// constructor
-	public Room(String name) {
+	public Room(String name, int shots, ArrayList<Room> rooms, ArrayList<Player> players, ArrayList<Scene> extrasRoles) {
+		shotCounters = shots;
+		sceneCard = null;
 		roomName = name;
-		adjRooms = new ArrayList<Room>();
-		occupants = new ArrayList<Player>();
+		adjRooms = rooms;
+		occupants = players;
+		extras = extrasRoles;
 	}
 
 	// methods
@@ -29,6 +35,11 @@ public class Room {
 	//
 	protected void setAdjRooms(ArrayList<Room> rooms) { this.adjRooms = rooms; }
 	//
+	protected void setCounter(int newCount) {
+		this.shotCounter = newCount;
+	}
+	//
+	protected void setCard(Card card) { this.sceneCard = card; }
 	// getters
 	public String getRoomName() {
 		String name = this.roomName;
@@ -45,5 +56,14 @@ public class Room {
 		ArrayList<Player> players = new ArrayList<Player>();
 		return players;
 	}
-
+	//
+	public int getShotCount() {
+		int currCount = this.shotCounter;
+		return currCount;
+	}
+	//
+	public Card getSceneCard() {
+		Card roomCard = this.sceneCard;
+		return roomCard;
+	}
 }
