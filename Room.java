@@ -4,18 +4,20 @@ public class Room {
 	String roomName;
 	int shotCounters;
 	Card sceneCard;
-	ArrayList<Room> adjRooms;
+	ArrayList<String> adjRooms;
 	ArrayList<Player> occupants;
-	ArrayList<Scene> extras;
+	ArrayList<SceneExtras> extras;
+	boolean sceneEnd;
 
 	// constructor
-	public Room(String name, int shots, ArrayList<Room> rooms, ArrayList<Player> players, ArrayList<Scene> extrasRoles) {
+	public Room(String name, int shots, ArrayList<String> rooms, ArrayList<Player> players, ArrayList<SceneExtras> extrasRoles) {
 		shotCounters = shots;
 		sceneCard = null;
 		roomName = name;
 		adjRooms = rooms;
 		occupants = players;
 		extras = extrasRoles;
+		sceneEnd = false;
 	}
 
 	// methods
@@ -26,44 +28,46 @@ public class Room {
 	void removePlayer(Player player) {
 		this.occupants.remove(player);
 	}
-	void addRoom(Room room) {
-		this.adjRooms.add(room);
-	}
 
 	// setters
 	protected void setRoomName(String name) { this.roomName = name; }
 	//
-	protected void setAdjRooms(ArrayList<Room> rooms) { this.adjRooms = rooms; }
+	protected void setAdjRooms(ArrayList<String> rooms) { this.adjRooms = rooms; }
 	//
 	protected void setCounter(int newCount) {
-		this.shotCounter = newCount;
+		this.shotCounters = newCount;
 	}
 	//
 	protected void setCard(Card card) { this.sceneCard = card; }
+	//
+	protected void setSceneClosed(boolean state) { this.sceneEnd = state; }
+
 	// getters
 	public String getRoomName() {
-		String name = this.roomName;
-		return name;
+		return this.roomName;
 	}
-
 	//
-	public ArrayList<Room> getAdjRooms() {
-		ArrayList<Room> rooms = new ArrayList<Room>();
-		return rooms;
+	public ArrayList<String> getAdjRooms() {
+		return this.adjRooms;
 	}
 	//
 	public ArrayList<Player> getOccupants() {
-		ArrayList<Player> players = new ArrayList<Player>();
-		return players;
+		return this.occupants;
+	}
+	//
+	public ArrayList<SceneExtras> getExtras() {
+		return this.extras;
 	}
 	//
 	public int getShotCount() {
-		int currCount = this.shotCounter;
-		return currCount;
+		return this.shotCounters;
 	}
 	//
 	public Card getSceneCard() {
-		Card roomCard = this.sceneCard;
-		return roomCard;
+		return this.sceneCard;
+	}
+	//
+	public boolean getSceneState() {
+		return this.sceneEnd;
 	}
 }

@@ -14,50 +14,6 @@ public class Scene {
 		sceneName = scene;
 	}
 
-	// methods
-	//
-	void removeRoles() {
-		// remove from availableRoles list
-
-	}
-	void update(Scene_Room sc_rm) {
-		int shotCounter = sc_rm.getShotCount();
-		if (shotCounter == 0) {
-			wrap();
-		}
-	}
-	//
-	public void payStarring(Player player) {
-		// starring gets 2 credits
-		int credits = player.getCredits();
-		credits += 2;
-		player.setCredits(credits);
-	}
-	//
-	public void payExtra(Player player) {
-		// not starring gets 1 dollar and 1 credit
-		int credits = player.getCredits();
-		int dollars = player.getDollars();
-		credits += 1;
-		dollars += 1;
-		player.setCredits(credits);
-		player.setDollars(dollars);
-	}
-	//
-	public void payExtraFail(Player player) {
-		int dollars = player.getDollars();
-		dollars += 1;
-		player.setDollars(dollars);
-	}
-	//
-	public void bonusPayout(Player player, int numDice) {
-
-	}
-	//
-	// bonusPayouts
-	void wrap() {
-
-	}
 
 	// setters
 	protected void setBudget(int sceneBudget) {
@@ -83,17 +39,14 @@ public class Scene {
 	}
 	//
 	public ArrayList<Role> getavailableRoles() {
-		ArrayList<Role> ableRoles = this.availableRoles;
-		return ableRoles;
+		return this.availableRoles;
 	}
 	//
 	public String getSceneName() {
-		String name = this.sceneName;
-		return name;
+		return this.sceneName;
 	}
 	//
 	public boolean getSceneAvailability() {
-		boolean available = this.sceneAvailable;
-		return available;
+		return this.sceneAvailable;
 	}
 }
