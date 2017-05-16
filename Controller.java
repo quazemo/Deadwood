@@ -3,7 +3,9 @@
  * and run main which loops until days are over
  */
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+
+
 public class Controller {
 
 	// attributes
@@ -14,53 +16,29 @@ public class Controller {
 	public Controller() {
 		numPlayers = 0;
 		playerOrder = new ArrayList<Player>();
+		//dice = new Die[];
 	}
 
 	// methods
 	/* main */
 	public static void main(String[] args) {
 		startGame();
+		System.out.print("Successful Skeleton Initialized \n");
 
 	}
 	//
-	private boolean menu(Player player) {
-		System.out.println("------WELCOME TO DEADWOOD------");
-		String location = player.getLocation();
-		Scanner playerInput = new Scanner(System.in);
-		playerInput.toString().toLowerCase();
-		String[] options = {"who = displays current player.",
-				"where = what room is current player in.",
-				"move = move to adjacent room.",
-				"work = choose a role to work.",
-				"upgrade = upgrade rank via credits or cash.",
-				"rehearse = add a rehearse chip.",
-				"act = player performs acting role.",
-				"end = end players turn."}
-		while (!playerInput.equals("end")) {
-			System.out.print("Enter one of the following commands: ");
-
-			// if player is acting in role
-			if (!player.getRole().equals("no current role")) {
-				System.out.println(options[0]);
-				System.out.println(options[1]);
-				System.out.println(options[5]);
-				System.out.println(options[6]);
-				System.out.println(options[7]);
-				switch(String input) {
-					case()
-				}
-			} else if (!player.getRole().equals("no current role") && (location.equals("Casting_Office"))) {
-				System.out.println(options[0]);
-				System.out.println(options[1]);
-				System.out.println(options[4]);
-
-			}
-		}
-		return true;
+	void createPlayers(int numPlayers) {
+		/* enter player names as input
+		 * create player objects
+		 * player order is determined here
+		 */
 	}
-	// temporary game board for debugging purposes
+	//
+	void menu() {
+		// set numPlayers
+	}
+	//
 	static void startGame() {
-		// create all game objects
 
 	}
 	//
@@ -68,6 +46,39 @@ public class Controller {
 		/* display game results
 		 * ask user to play again (y/n)
 		 */
+	}
+	void endScene(Room curr, Card cardRoom){
+
+		//curr.setSceneclosed = true;
+		cardRoom.setCardDone(true);
+		ArrayList<Player> playersInside = curr.getOccupants();
+		ArrayList <Integer> diceVals = new ArrayList<Integer>();
+		ArrayList <Integer> rankVals = new ArrayList<Integer>();
+		ArrayList<Role> sRoles = cardRoom.getStarringRoles();
+		Die die = new Die();
+
+		for(int i = 0; i < playersInside.size(); i++){
+			if(playersInside.get(i).getRole().equals("starring")){
+				//star bonus
+				int numDice = cardRoom.getBudget();
+				for (int j = 0; j < numDice; j++){
+					diceVals.add(die.getValue());
+				}
+
+				for(int j = 0; j < sRoles.size(); j++){
+					Role r = sRoles.get(j);
+					rankVals.add(r.getRank());
+				}
+				Collections.sort(diceVals);
+				Collections.sort(rankVals);
+				}
+				System.out.println("You should be getting a Starring bonus \n");
+
+			if(playersInside.get(i).getRole().equals("extra")){
+				//extra bonus
+				System.out.println("You should be getting a Extra bonus \n");
+			}
+		}
 	}
 	//
 	int calcScore() {
