@@ -1,7 +1,7 @@
 public class Days {
 	// attributes
-	int dayCount;
-	int maxDays;
+	static int dayCount;
+	static int maxDays;
 	boolean gameOver;
 
 	// constructor

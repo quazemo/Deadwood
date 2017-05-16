@@ -18,7 +18,6 @@ public class Scene {
 	//
 	void removeRoles() {
 		// remove from availableRoles list
-
 	}
 	void update(Scene_Room sc_rm) {
 		int shotCounter = sc_rm.getShotCount();

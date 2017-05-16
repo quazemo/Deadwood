@@ -20,30 +20,48 @@ public class Controller {
 	/* main */
 	public static void main(String[] args) {
 		startGame();
-		System.out.print("Successful Skeleton Initialized");
+
 	}
 	//
-	void menu(Player player) {
-		// set numPlayers
+	private boolean menu(Player player) {
+		System.out.println("------WELCOME TO DEADWOOD------");
+		String location = player.getLocation();
+		Scanner playerInput = new Scanner(System.in);
+		playerInput.toString().toLowerCase();
+		String[] options = {"who = displays current player.",
+				"where = what room is current player in.",
+				"move = move to adjacent room.",
+				"work = choose a role to work.",
+				"upgrade = upgrade rank via credits or cash.",
+				"rehearse = add a rehearse chip.",
+				"act = player performs acting role.",
+				"end = end players turn."}
+		while (!playerInput.equals("end")) {
+			System.out.print("Enter one of the following commands: ");
 
+			// if player is acting in role
+			if (!player.getRole().equals("no current role")) {
+				System.out.println(options[0]);
+				System.out.println(options[1]);
+				System.out.println(options[5]);
+				System.out.println(options[6]);
+				System.out.println(options[7]);
+				switch(String input) {
+					case()
+				}
+			} else if (!player.getRole().equals("no current role") && (location.equals("Casting_Office"))) {
+				System.out.println(options[0]);
+				System.out.println(options[1]);
+				System.out.println(options[4]);
 
+			}
+		}
+		return true;
 	}
 	// temporary game board for debugging purposes
 	static void startGame() {
 		// create all game objects
-		Controller control = new Controller();
-		Days d = new Days();
-		Die die = new Die();
-		Game_Board gb = new Game_Board();
-		//Player player = new Player("bob",, 100, 0, 1);
-		Role role1 = new Role(1, "robot1", true, false);
-		Role role2 = new Role(3, "robot2", true, false);
-		ArrayList<Role> roles = new ArrayList<Role>();
-		roles.add(role1);
-		roles.add(role2);
-		Scene sc1 = new Scene(100, "Transformers");
-		sc1.setAvailableRoles(roles);
-		Scene_Room scRoom = new Scene_Room();
+
 	}
 	//
 	void endGame() {

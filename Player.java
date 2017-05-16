@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Player {
 	// attributes
 	String name;
-	Room location;
+	String location;
 	int dollars;
 	int credits;
 	int rank;
@@ -12,7 +12,7 @@ public class Player {
 	boolean turnHasHappened;
 
 	// constructor
-	public Player(String playerName, Room trailer, int money, int creds) {
+	public Player(String playerName, String trailer, int money, int creds) {
 		name = playerName;
 		location = trailer;
 		dollars = money;
@@ -23,7 +23,7 @@ public class Player {
 	}
 	// methods
 	// Allows Player to move to adj. rooms
-	void move() { //Room location
+	void move(String roomName) { //Room location
 		// get adj rooms of cur room of Player
 		// then allow player to choose which room to go to.
 		ArrayList<Room> adjRooms = location.getAdjRooms();
@@ -107,37 +107,30 @@ public class Player {
 	// getters
 	//
 	public String getPlayerName() {
-		String playerName = this.name;
-		return playerName;
+		return this.name;
 	}
 	//
 	public int getDollars() {
-		int currDollars = this.dollars;
-		return currDollars;
+		return this.dollars;
 	}
 	//
 	public int getCredits() {
-		int currCredits = this.credits;
-		return currCredits;
+		return this.credits;
 	}
 	//
 	public int getRank() {
-		int currRank = this.rank;
-		return currRank;
+		return this.rank;
 	}
 	//
 	public String getRole() {
-		String currRole = this.roleName;
-		return currRole;
+		return this.roleName;
 	}
 	//
-	public String getPlayerLocation() {
-		String playerLocation = "playerLocation";
-		return playerLocation;
+	public String getLocation() {
+		return this.location;
 	}
 	//
 	public boolean getTurn() {
-		boolean currTurn = this.turnHasHappened;
-		return currTurn;
+		return this.turnHasHappened;
 	}
 }

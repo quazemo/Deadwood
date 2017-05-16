@@ -4,12 +4,12 @@ public class Room {
 	String roomName;
 	int shotCounters;
 	Card sceneCard;
-	ArrayList<Room> adjRooms;
+	ArrayList<String> adjRooms;
 	ArrayList<Player> occupants;
 	ArrayList<Scene> extras;
 
 	// constructor
-	public Room(String name, int shots, ArrayList<Room> rooms, ArrayList<Player> players, ArrayList<Scene> extrasRoles) {
+	public Room(String name, int shots, ArrayList<String> rooms, ArrayList<Player> players, ArrayList<Scene> extrasRoles) {
 		shotCounters = shots;
 		sceneCard = null;
 		roomName = name;
