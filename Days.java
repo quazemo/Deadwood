@@ -13,7 +13,7 @@ public class Days {
 
 	// methods
 	boolean checkDays() {
-		if (dayCount == maxDays) {
+		if (dayCount > maxDays) {
 			return true;
 		}
 		return false;
@@ -26,7 +26,7 @@ public class Days {
 		}
 	}
 	// setters
-	void setDays(int days) {
+	void setDay(int days) {
 		this.dayCount = days;
 	}
 	//

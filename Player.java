@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.*;
 
 public class Player {
 	// attributes
@@ -23,10 +24,15 @@ public class Player {
 	}
 	// methods
 	// Allows Player to move to adj. rooms
-	void move(String roomName) { //Room location
+	void move(Gameboard gb) { //Room location
 		// get adj rooms of cur room of Player
 		// then allow player to choose which room to go to.
-		ArrayList<Room> adjRooms = location.getAdjRooms();
+		ArrayList<String> adjRooms = null;
+		for (int p = 0; p < gb.allRooms.size(); p++) {
+			if (this.getLocation().equals(gb.allRooms.get(p).getRoomName())) {
+				adjRooms = gb.allRooms.get(p).getAdjRooms();
+			}
+		}
 		Scanner input = new Scanner(System.in);
 		int newLocNum = 0;
 		System.out.println("Please select the number of the room you would like to move to:\n");
@@ -35,13 +41,6 @@ public class Player {
 		for(int i = 0; i < adjRooms.size(); i++) {
 			System.out.println((i+1) + ": " + adjRooms.get(i));
 		}
-		/*
-		int i = 1;
-		while (i < adjRooms.size() + 1){
-			System.out.println( "(" + i + ") " + adjRooms.get(i-1));
-			i++;
-		}
-		*/
 
 		newLocNum = input.nextInt();
 		while((newLocNum > (adjRooms.size() + 1)) || (newLocNum == 0) || (newLocNum < 0)){
@@ -121,6 +120,8 @@ public class Player {
 	public int getRank() {
 		return this.rank;
 	}
+	//
+	public
 	//
 	public String getRole() {
 		return this.roleName;

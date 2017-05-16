@@ -1,10 +1,20 @@
-import java.util.ArrayList;
+import java.util.*;
 
-public class Game_Board {
-    static ArrayList<Room> allRooms = new ArrayList<Room>();
+public class GameBoard {
+    public static ArrayList<Room> allRooms;
+    public static ArrayList<Player> allPlayers;
+
+    public GameBoard() {
+        // default
+        allRooms = new ArrayList<Room>();
+        allPlayers = new ArrayList<Player>();
+    }
+
     public void initBoard() {
         // add locations
-        readRooms(playerList);
+        readRooms();
+
+
         // add scenes to locations
     }
 
@@ -38,7 +48,7 @@ public class Game_Board {
                     adjRooms.add(roomTwo);
                 }
                 // 3 adjRooms
-                if ((lc <= 2 && > 0) ||(lc == 4) || (lc >= 8 && <= 10) ||(lc == 12)){
+                if ((lc <= 2 && lc > 0) ||(lc == 4) || (lc >= 8 && lc <= 10) ||(lc == 12)){
                     String roomOne = lineData.next();
                     String roomTwo = lineData.next();
                     String roomThree = lineData.next();
@@ -47,7 +57,7 @@ public class Game_Board {
                     adjRooms.add(roomThree);
                 }
                 // 4 adjRooms
-                if ((lc == 3) || (lc >= 6 && <= 7) ||(lc == 11)){
+                if ((lc == 3) || (lc >= 6 && lc <= 7) ||(lc == 11)){
                     String roomOne = lineData.next();
                     String roomTwo = lineData.next();
                     String roomThree = lineData.next();
@@ -62,44 +72,44 @@ public class Game_Board {
                 // TODO condense this into a task that looks for end of line characters
                 // 2 roles
                 if ((lc == 2) || (lc >= 7 && lc <= 8) || (lc == 12)) {
-                    int rankOne = lineData.next();
+                    int rankOne = lineData.nextInt();
                     String roleOne = lineData.next();
-                    int rankTwo = lineData.next();
+                    int rankTwo = lineData.nextInt();
                     String roleTwo = lineData.next();
-                    SceneExtras extraOne = new SceneExtra(rankOne, roleOne);
-                    SceneExtras extraTwo = new SceneExtra(rankTwo, roleTwo);
+                    SceneExtras extraOne = new SceneExtras(rankOne, roleOne);
+                    SceneExtras extraTwo = new SceneExtras(rankTwo, roleTwo);
                     extras.add(extraOne);
                     extras.add(extraTwo);
                 }
                 // 3 roles
                 if ((lc == 5) || (lc == 9) || (lc == 11)) {
-                    int rankOne = lineData.next();
+                    int rankOne = lineData.nextInt();
                     String roleOne = lineData.next();
-                    int rankTwo = lineData.next();
+                    int rankTwo = lineData.nextInt();
                     String roleTwo = lineData.next();
-                    int rankThree = lineData.next();
+                    int rankThree = lineData.nextInt();
                     String roleThree = lineData.next();
-                    SceneExtras extraOne = new SceneExtra(rankOne, roleOne);
-                    SceneExtras extraTwo = new SceneExtra(rankTwo, roleTwo);
-                    SceneExtras extraThree = new SceneExtra(rankThree, roleThree);
+                    SceneExtras extraOne = new SceneExtras(rankOne, roleOne);
+                    SceneExtras extraTwo = new SceneExtras(rankTwo, roleTwo);
+                    SceneExtras extraThree = new SceneExtras(rankThree, roleThree);
                     extras.add(extraOne);
                     extras.add(extraTwo);
                     extras.add(extraThree);
                 }
                 // 4 roles
                 if ((lc == 1) || (lc == 6) || (lc == 10)) {
-                    int rankOne = lineData.next();
+                    int rankOne = lineData.nextInt();
                     String roleOne = lineData.next();
-                    int rankTwo = lineData.next();
+                    int rankTwo = lineData.nextInt();
                     String roleTwo = lineData.next();
-                    int rankThree = lineData.next();
+                    int rankThree = lineData.nextInt();
                     String roleThree = lineData.next();
-                    int rankFour = lineData.next();
+                    int rankFour = lineData.nextInt();
                     String roleFour = lineData.next();
-                    SceneExtras extraOne = new SceneExtra(rankOne, roleOne);
-                    SceneExtras extraTwo = new SceneExtra(rankTwo, roleTwo);
-                    SceneExtras extraThree = new SceneExtra(rankThree, roleThree);
-                    SceneExtras extraFour = new SceneExtra(rankFour, roleFour);
+                    SceneExtras extraOne = new SceneExtras(rankOne, roleOne);
+                    SceneExtras extraTwo = new SceneExtras(rankTwo, roleTwo);
+                    SceneExtras extraThree = new SceneExtras(rankThree, roleThree);
+                    SceneExtras extraFour = new SceneExtras(rankFour, roleFour);
                     extras.add(extraOne);
                     extras.add(extraTwo);
                     extras.add(extraThree);
@@ -165,8 +175,13 @@ public class Game_Board {
 
     // randomize card selection
     protected Card selectCard() {
-        
+        Random randGenerate = new Random();
+        ArrayList<Card> deck = createDeck();
+        int index = randGenerate.nextInt(deck.size());
+        Card selectedCard = deck.get(index);
+        deck.remove(index);
 
+        return selectedCard;
     }
 
     /* enter player names as input
@@ -187,6 +202,7 @@ public class Game_Board {
             System.out.println("Enter player " + (i + 1) + "'s name: ");
             String name = scanPlayer.next();
             Player player = new Player(name, "Trailer", 0, 0);
+            allPlayers.add(player);
             newPlayers.add(player);
         }
         scanPlayer.close();

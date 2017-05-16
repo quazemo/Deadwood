@@ -32,5 +32,5 @@ public class Card{
     return this.starring.get(i).getName();
   }
 
-
+  protected Role getRoleObj(int i) { return this.starring.get(i); }
 }
