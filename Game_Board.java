@@ -165,8 +165,13 @@ public class Game_Board {
 
     // randomize card selection
     protected Card selectCard() {
-        
+        Random randGenerate = new Random();
+        ArrayList<Card> deck = createDeck();
+        int index = randGenerate.nextInt(deck.size());
+        Card selectedCard = deck.get(index);
+        deck.remove(index);
 
+        return selectedCard;
     }
 
     /* enter player names as input
