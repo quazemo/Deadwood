@@ -1,0 +1,12 @@
+Main_Street Saloon Trailer Casting_Office
+Saloon Trailer Main_Street Train_Station
+Trailer Secret_Hideout Jail Saloon Main_Street
+Casting_Office Ranch Main_Street Secret_Hideout
+Ranch Casting_Office Secret_Hideout
+Secret_Hideout Trailer Bank Hotel Casting_Office Ranch
+Bank Secret_Hideout Hotel Church Jail
+Church Bank Hotel General Store
+Hotel Bank Church Secret_Hideout
+Train_Station Saloon General_Store Jail
+Jail Trailer General_Store Train_Station Bank
+General_Store Church Jail Train_Station

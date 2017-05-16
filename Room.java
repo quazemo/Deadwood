@@ -2,14 +2,20 @@ import java.util.ArrayList;
 public class Room {
 	// attributes
 	String roomName;
+	int shotCounters;
+	Card sceneCard;
 	ArrayList<Room> adjRooms;
 	ArrayList<Player> occupants;
+	ArrayList<Scene> extras;
 
 	// constructor
-	public Room(String name, ArrayList<Room> rooms) {
+	public Room(String name, int shots, ArrayList<Room> rooms, ArrayList<Player> players, ArrayList<Scene> extrasRoles) {
+		shotCounters = shots;
+		sceneCard = null;
 		roomName = name;
 		adjRooms = rooms;
-		occupants = new ArrayList<Player>();
+		occupants = players;
+		extras = extrasRoles;
 	}
 
 	// methods
@@ -20,30 +26,44 @@ public class Room {
 	void removePlayer(Player player) {
 		this.occupants.remove(player);
 	}
+	void addRoom(Room room) {
+		this.adjRooms.add(room);
+	}
 
 	// setters
-	void setRoomName(String name) {
-		this.roomName = name;
+	protected void setRoomName(String name) { this.roomName = name; }
+	//
+	protected void setAdjRooms(ArrayList<Room> rooms) { this.adjRooms = rooms; }
+	//
+	protected void setCounter(int newCount) {
+		this.shotCounter = newCount;
 	}
 	//
-	void setAdjRooms(ArrayList<Room> rooms) {
-		this.adjRooms = rooms;
-	}
-	//
+	protected void setCard(Card card) { this.sceneCard = card; }
 	// getters
-	String getRoomName() {
+	public String getRoomName() {
 		String name = this.roomName;
 		return name;
 	}
+
 	//
-	ArrayList<Room> getAdjRooms() {
+	public ArrayList<Room> getAdjRooms() {
 		ArrayList<Room> rooms = new ArrayList<Room>();
 		return rooms;
 	}
 	//
-	ArrayList<Player> getOccupants() {
+	public ArrayList<Player> getOccupants() {
 		ArrayList<Player> players = new ArrayList<Player>();
 		return players;
 	}
-
+	//
+	public int getShotCount() {
+		int currCount = this.shotCounter;
+		return currCount;
+	}
+	//
+	public Card getSceneCard() {
+		Card roomCard = this.sceneCard;
+		return roomCard;
+	}
 }

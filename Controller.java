@@ -3,13 +3,13 @@
  * and run main which loops until days are over
  */
 import java.util.ArrayList;
-
+import java.util.Scanner;
 public class Controller {
 
 	// attributes
 	int numPlayers;
 	ArrayList<Player> playerOrder = new ArrayList<Player>();
-	
+
 	// constructor
 	public Controller() {
 		numPlayers = 0;
@@ -23,24 +23,19 @@ public class Controller {
 		System.out.print("Successful Skeleton Initialized");
 	}
 	//
-	void createPlayers(int numPlayers) {
-		/* enter player names as input
-		 * create player objects
-		 * player order is determined here
-		 */
-	}
-	//
-	void menu() {
+	void menu(Player player) {
 		// set numPlayers
+
+
 	}
-	//
+	// temporary game board for debugging purposes
 	static void startGame() {
 		// create all game objects
 		Controller control = new Controller();
 		Days d = new Days();
 		Die die = new Die();
 		Game_Board gb = new Game_Board();
-		Player player = new Player("bob", "trailer", 100, 0, 1);
+		//Player player = new Player("bob",, 100, 0, 1);
 		Role role1 = new Role(1, "robot1", true, false);
 		Role role2 = new Role(3, "robot2", true, false);
 		ArrayList<Role> roles = new ArrayList<Role>();
