@@ -8,10 +8,6 @@ public class Scene_Room {
 	}
 
 	// methods
-	int payPlayer() {
-		return 0;
-	}
-	//
 	void updateRoom() {
 	}
 
