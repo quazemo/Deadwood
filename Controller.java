@@ -2,9 +2,11 @@
 /* Controller Class should just initialize objects
  * and run main menu and loops until days are over
  */
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Collections;
 public class Controller {
 
 	// attributes
@@ -238,6 +240,40 @@ public class Controller {
 			return true;
 		}
 		return false;
+	}
+
+	void endScene(Room curr, Card cardRoom){
+
+		//curr.setSceneclosed = true;
+		cardRoom.setCardDone(true);
+		ArrayList<Player> playersInside = curr.getOccupants();
+		ArrayList <Integer> diceVals = new ArrayList<Integer>();
+		ArrayList <Integer> rankVals = new ArrayList<Integer>();
+		ArrayList<Role> sRoles = cardRoom.getStarringRoles();
+		Die die = new Die();
+
+		for(int i = 0; i < playersInside.size(); i++){
+			if(playersInside.get(i).getRole().equals("starring")){
+				//star bonus
+				int numDice = cardRoom.getBudget();
+				for (int j = 0; j < numDice; j++){
+					diceVals.add(die.getValue());
+				}
+
+				for(int j = 0; j < sRoles.size(); j++){
+					Role r = sRoles.get(j);
+					rankVals.add(r.getRank());
+				}
+				Collections.sort(diceVals);
+				Collections.sort(rankVals);
+			}
+			System.out.println("You should be getting a Starring bonus \n");
+
+			if(playersInside.get(i).getRole().equals("extra")){
+				//extra bonus
+				System.out.println("You should be getting a Extra bonus \n");
+			}
+		}
 	}
 
 	//

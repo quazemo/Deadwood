@@ -24,7 +24,7 @@ public class Player {
 	}
 	// methods
 	// Allows Player to move to adj. rooms
-	void move(Gameboard gb) { //Room location
+	void move(GameBoard gb) { //Room location
 		// get adj rooms of cur room of Player
 		// then allow player to choose which room to go to.
 		ArrayList<String> adjRooms = null;
@@ -95,7 +95,7 @@ public class Player {
 		this.roleName = newRole;
 	}
 	//
-	protected void setPlayerLocation(Room loc) {
+	protected void setPlayerLocation(String loc) {
 		this.location = loc;
 	}
 	//
@@ -120,8 +120,6 @@ public class Player {
 	public int getRank() {
 		return this.rank;
 	}
-	//
-	public
 	//
 	public String getRole() {
 		return this.roleName;

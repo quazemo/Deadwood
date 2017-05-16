@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class GameBoard {
     public static ArrayList<Room> allRooms;
@@ -115,11 +116,12 @@ public class GameBoard {
                     extras.add(extraThree);
                     extras.add(extraFour);
                 }
+                Room room = null;
                 if (roomName.equals("Trailer")) {
-                    Room room = new Room(roomName, shots, adjRooms, playerList, extras);
+                    room = new Room(roomName, shots, adjRooms, playerList, extras);
                 } else {
                     ArrayList<Player> players = new ArrayList<Player>();
-                    Room room = new Room(roomName, shots, adjRooms, players, extras);
+                    room = new Room(roomName, shots, adjRooms, players, extras);
                 }
                 allRooms.add(room);
             } catch (java.util.InputMismatchException e) {
@@ -153,7 +155,6 @@ public class GameBoard {
                             String name = cardScanner.next();
                             Role role = new Role(rank, name, true, false);
                             starring.add(role);
-
                         }
                         catch(InputMismatchException e){
                             e.printStackTrace();
@@ -169,8 +170,8 @@ public class GameBoard {
         }
         catch(FileNotFoundException e){
             System.out.println("Error: File is not found. \n");
-            //e.printStackTrace();
         }
+        return deck;
     }
 
     // randomize card selection
@@ -208,10 +209,5 @@ public class GameBoard {
         scanPlayer.close();
         return newPlayers;
     }
-
-    // store shot counter, die roll, dice counters etc for game board objects.
-    // acting
-    //public static Die gameDie = new Die();
-    // make board
 
 }

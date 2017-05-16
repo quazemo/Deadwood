@@ -28,9 +28,6 @@ public class Room {
 	void removePlayer(Player player) {
 		this.occupants.remove(player);
 	}
-	void addRoom(Room room) {
-		this.adjRooms.add(room);
-	}
 
 	// setters
 	protected void setRoomName(String name) { this.roomName = name; }
