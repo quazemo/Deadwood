@@ -1,7 +1,7 @@
 public class Days {
 	// attributes
-	int dayCount;
-	int maxDays;
+	static int dayCount;
+	static int maxDays;
 	boolean gameOver;
 
 	// constructor
@@ -13,7 +13,7 @@ public class Days {
 
 	// methods
 	boolean checkDays() {
-		if (dayCount == maxDays) {
+		if (dayCount > maxDays) {
 			return true;
 		}
 		return false;
@@ -26,7 +26,7 @@ public class Days {
 		}
 	}
 	// setters
-	void setDays(int days) {
+	void setDay(int days) {
 		this.dayCount = days;
 	}
 	//

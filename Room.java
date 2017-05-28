@@ -2,14 +2,22 @@ import java.util.ArrayList;
 public class Room {
 	// attributes
 	String roomName;
-	ArrayList<Room> adjRooms;
+	int shotCounters;
+	Card sceneCard;
+	ArrayList<String> adjRooms;
 	ArrayList<Player> occupants;
+	ArrayList<Role> extras;
+	boolean sceneEnd;
 
 	// constructor
-	public Room(String name) {
+	public Room(String name, int shots, ArrayList<String> rooms, ArrayList<Player> players, ArrayList<Role> e) {
+		shotCounters = shots;
+		sceneCard = null;
 		roomName = name;
-		adjRooms = new ArrayList<Room>();
-		occupants = new ArrayList<Player>();
+		adjRooms = rooms;
+		occupants = players;
+		extras = e;
+		sceneEnd = false;
 	}
 
 	// methods
@@ -20,33 +28,54 @@ public class Room {
 	void removePlayer(Player player) {
 		this.occupants.remove(player);
 	}
-	void addRoom(Room room) {
-		this.adjRooms.add(room);
-	}
 
 	// setters
 	protected void setRoomName(String name) {
 		this.roomName = name;
 	}
 	//
-	protected void setAdjRooms(ArrayList<Room> rooms) {
+	protected void setAdjRooms(ArrayList<String> rooms) {
 		this.adjRooms = rooms;
 	}
 	//
-	// getters
-	public String getRoomName() {
-		String name = this.roomName;
-		return name;
+	protected void setCounter(int newCount) {
+		this.shotCounters = newCount;
 	}
 	//
-	public ArrayList<Room> getAdjRooms() {
-		ArrayList<Room> rooms = new ArrayList<Room>();
-		return rooms;
+	protected void setCard(Card card) {
+		this.sceneCard = card;
+	}
+	//
+	protected void setSceneClosed(boolean state) {
+		this.sceneEnd = state;
+	}
+
+	// getters
+	public String getRoomName() {
+		return this.roomName;
+	}
+	//
+	public ArrayList<String> getAdjRooms() {
+		return this.adjRooms;
 	}
 	//
 	public ArrayList<Player> getOccupants() {
-		ArrayList<Player> players = new ArrayList<Player>();
-		return players;
+		return this.occupants;
 	}
-
+	//
+	public ArrayList<Role> getExtras() {
+		return this.extras;
+	}
+	//
+	public int getShotCount() {
+		return this.shotCounters;
+	}
+	//
+	public Card getSceneCard() {
+		return this.sceneCard;
+	}
+	//
+	public boolean getSceneState() {
+		return this.sceneEnd;
+	}
 }

@@ -1,13 +1,13 @@
 7 4 Evil_Wears_a_Hat 2 Defroked_Priest 3 Marshal_Canfield 4 One-Eyed_Man
 20 4 Law_and_the_Old_West 1 Rug_Merchant 2 Banker 5 Talking_Mule
-22 5 The_Life_and_Times_of_John_Skywater 5 Auctioneer 6 General Custer
+22 5 The_Life_and_Times_of_John_Skywater 5 Auctioneer 6 General_Custer
 32 5 My_Years_on_the_Prairie 3 Drunk 4 Librarian 6 Man_with_Hay
 12 4 Buffalo_Bill:_The_Lost_Years 2 Hollering_Boy 3 Drunk_Farmer 5 Meek_Little_Sarah
-14 6 Square_Deal_City 2 Squeaking_Boy 4 Pharaoh_Imhotep 5 Aunt Martha
+14 6 Square_Deal_City 2 Squeaking_Boy 4 Pharaoh_Imhotep 5 Aunt_Martha
 31 4 Davy_Crockett:_A_Drunkard's_Tale 4 The_Duck 6 His_Brother
 34 4 The_Way_the_West_Was_Run 2 Town_Drunk 4 Squinting_Miner 5 Poltergeist
 24 3 Down_in_the_Valley 1 Angry_Barber 3 Woman_with_Board 5 Man_on_Fire
-14 4 Ol'_Shooter_and_Little_Doll 1 Sleeping Man 2 Man_with_Pig 4 Shooter
+14 4 Ol'_Shooter_and_Little_Doll 1 Sleeping_Man 2 Man_with_Pig 4 Shooter
 19 4 The_Robbers_of_Trains 1 Buster 4 Man_Reading_Paper 5 Fat_Pete
 12 2 Beyond_the_Pail:_Life_without_Lactose 6 Martin
 16 3 A_Man_Called_'Cow' 3 Preacher 6 Amused_Witness

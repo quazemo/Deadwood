@@ -8,14 +8,12 @@ public class Die extends Random {
 	}
 
 	// methods
-	int generateRandomNumber() {
+	void generateRandomNumber() {
 		Random rand = new Random();
-		int dieValue = rand.nextInt(5) + 1;
-		return dieValue;
+		dieValue = rand.nextInt(5) + 1;
 	}
 	// getter
 	int getValue() {
-		dieValue = generateRandomNumber();
 		return dieValue;
 	}
 }
