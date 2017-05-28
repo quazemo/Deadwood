@@ -1,0 +1,40 @@
+7 4 Evil_Wears_a_Hat 2 Defroked_Priest 3 Marshal_Canfield 4 One-Eyed_Man
+20 4 Law_and_the_Old_West 1 Rug_Merchant 2 Banker 5 Talking_Mule
+22 5 The_Life_and_Times_of_John_Skywater 5 Auctioneer 6 General_Custer
+32 5 My_Years_on_the_Prairie 3 Drunk 4 Librarian 6 Man_with_Hay
+12 4 Buffalo_Bill:_The_Lost_Years 2 Hollering_Boy 3 Drunk_Farmer 5 Meek_Little_Sarah
+14 6 Square_Deal_City 2 Squeaking_Boy 4 Pharaoh_Imhotep 5 Aunt_Martha
+31 4 Davy_Crockett:_A_Drunkard's_Tale 4 The_Duck 6 His_Brother
+34 4 The_Way_the_West_Was_Run 2 Town_Drunk 4 Squinting_Miner 5 Poltergeist
+24 3 Down_in_the_Valley 1 Angry_Barber 3 Woman_with_Board 5 Man_on_Fire
+14 4 Ol'_Shooter_and_Little_Doll 1 Sleeping_Man 2 Man_with_Pig 4 Shooter
+19 4 The_Robbers_of_Trains 1 Buster 4 Man_Reading_Paper 5 Fat_Pete
+12 2 Beyond_the_Pail:_Life_without_Lactose 6 Martin
+16 3 A_Man_Called_'Cow' 3 Preacher 6 Amused_Witness
+2 2 Taffy_Commercial 3 Curious_Girl 4 Ghost_of_Photo
+3 2 Gum_Commercial 2 Surprised_Bison 4 Man_with_Horn
+8 5 Jesse_James:_Man_of_Action 2 Shot_in_Back 4 Shot_in_Leg 5 Leaps_into_Cake
+6 5 Disaster_at_Flying_J 2 Piano_Player 3 Man_in_Turban 3 Falls_on_Hoe
+23 3 Shakespeare_in_Lubbock 1 Falls_from_Tree 3 Laughing_Woman 4 Man_with_Whistle
+30 3 Go_West,_You! 4 Ex-Convict 6 Man_with_Onion
+15 5 The_Life_and_Time_of_John_Skywater 3 Staggering_Man 5 Woman_with_Beer 6 Marcie
+25 6 Gun!_The_Musical 4 Looks_like_Elvis 5 Singing_Dead_Man 6 Apothecary
+16 5 Humor_at_the_Expense_of_Others 2 Jailer 4 Mephistophele 5 Breaks_a_Window
+12 6 The_Search_for_Maggie_White 5 File_Critic 6 Hobo_with_bat
+1 2 Picante_Sauce_Commercial 3 Bewhisker’d_Cowpoke 5 Dog
+14 5 Jesse_James:_Man_of_Action 1 Shot_in_Head 4 Leaps_Out_of_Cake 6 Shot_Three_Times
+21 6 One_False_Step_for_Mankind 1 Flustered_Man 2 Space_Monkey 5 Cowbot_Dan
+15 5 Thirteen_the_Hard_Way 1 Man_in_Poncho 3 Ecstatic_Housewife 5 Isaac
+2 4 How_They_Get_Milk 2 Cow 3 St._Clement_of_Alexandria 4 Josie
+27 5 My_Years_on_the_Prairie 2 Willard 3 Leprechaun 5 Startled_Ox
+12 4 Davy_Crockett:_A_Drunkard's_Tale 2 Voice_of_God 3 Hands_of_God 4 Jack_Kemp
+25 4 Czechs_in_the_Sonora 5 Opice_(Monkey) 6 Man_with_Gun
+19 6 Swing_'em_Wide 1 Thrifty_Mike 3 Sober_Physician 5 Man_on_Floor
+35 6 Swing_'em_Wide 3 Liberated_Nun 5 Witch_Doctor 6 Voice_of_Reason
+5 4 Trials_of_the_First_Pioneers 2 Burning_Man 4  Cheese_Vendor 5 Hit_with_Table
+9 5 How_the_Grinch_Stole_Texas 3 Detective 4 File_Clerk 5 Cindy_Lou
+13 4 J._Robert_Lucky,_Man_of_Substance 1 Man_with_Rope 2 Svetlana 5 Accidental_Victum
+17 5 Thirteen_the_Hard_Way 2 Very_Wet_Man 4 Dejected_Housewife 5 Man_with_Box
+8 4 How_They_Get_Milk 4 Marksman 5 Postal_Worker 6 A_Horse
+19 3 Breakin'_In_Trick_Ponies 2 Fraternity_Pledge 6 Man_with_Sword
+40 5 Custer's_Other_Stands 2 Farmer 4  Exploding_Horse 6 Jack

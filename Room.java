@@ -2,14 +2,22 @@ import java.util.ArrayList;
 public class Room {
 	// attributes
 	String roomName;
-	ArrayList<Room> adjRooms;
+	int shotCounters;
+	Card sceneCard;
+	ArrayList<String> adjRooms;
 	ArrayList<Player> occupants;
+	ArrayList<Role> extras;
+	boolean sceneEnd;
 
 	// constructor
-	public Room(String name, ArrayList<Room> rooms) {
+	public Room(String name, int shots, ArrayList<String> rooms, ArrayList<Player> players, ArrayList<Role> e) {
+		shotCounters = shots;
+		sceneCard = null;
 		roomName = name;
 		adjRooms = rooms;
-		occupants = new ArrayList<Player>();
+		occupants = players;
+		extras = e;
+		sceneEnd = false;
 	}
 
 	// methods
@@ -22,28 +30,52 @@ public class Room {
 	}
 
 	// setters
-	void setRoomName(String name) {
+	protected void setRoomName(String name) {
 		this.roomName = name;
 	}
 	//
-	void setAdjRooms(ArrayList<Room> rooms) {
+	protected void setAdjRooms(ArrayList<String> rooms) {
 		this.adjRooms = rooms;
 	}
 	//
-	// getters
-	String getRoomName() {
-		String name = this.roomName;
-		return name;
+	protected void setCounter(int newCount) {
+		this.shotCounters = newCount;
 	}
 	//
-	ArrayList<Room> getAdjRooms() {
-		ArrayList<Room> rooms = new ArrayList<Room>();
-		return rooms;
+	protected void setCard(Card card) {
+		this.sceneCard = card;
 	}
 	//
-	ArrayList<Player> getOccupants() {
-		ArrayList<Player> players = new ArrayList<Player>();
-		return players;
+	protected void setSceneClosed(boolean state) {
+		this.sceneEnd = state;
 	}
 
+	// getters
+	public String getRoomName() {
+		return this.roomName;
+	}
+	//
+	public ArrayList<String> getAdjRooms() {
+		return this.adjRooms;
+	}
+	//
+	public ArrayList<Player> getOccupants() {
+		return this.occupants;
+	}
+	//
+	public ArrayList<Role> getExtras() {
+		return this.extras;
+	}
+	//
+	public int getShotCount() {
+		return this.shotCounters;
+	}
+	//
+	public Card getSceneCard() {
+		return this.sceneCard;
+	}
+	//
+	public boolean getSceneState() {
+		return this.sceneEnd;
+	}
 }
