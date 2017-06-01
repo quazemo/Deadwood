@@ -3,12 +3,12 @@ import java.io.*;
 
 public class GameBoard {
     public static ArrayList<Room> allRooms;
-    public static ArrayList<Player> allPlayers;
+    //public static ArrayList<Player> allPlayers;
 
     public GameBoard() {
         // default
         allRooms = new ArrayList<Room>();
-        allPlayers = new ArrayList<Player>();
+        //allPlayers = new ArrayList<Player>();
     }
 
     public void initBoard() {
@@ -21,7 +21,7 @@ public class GameBoard {
 
     // read in and make rooms
     private void readRooms() {
-        ArrayList<Player> playerList = createPlayers();
+        //ArrayList<Player> playerList = createPlayers();
         Scanner input = null;
         try {
             input = new Scanner(new File("Rooms.txt"));
@@ -35,21 +35,23 @@ public class GameBoard {
             lineData.useDelimiter("\\s+");
             try {
                 String roomName = lineData.next();
+                //System.out.println(roomName);
+                //System.out.println("lc: " + lc);
                 int shots = 0;
-                if (!roomName.equals("Trailer") || !roomName.equals("Casting_Office")) {
-                    shots = Integer.valueOf(lineData.next());
-                }
+                shots = lineData.nextInt();
+                //System.out.println("shots: " + shots);
                 ArrayList<String> adjRooms = new ArrayList<String>();
                 ArrayList<SceneExtras> extras = new ArrayList<SceneExtras>();
-                // 2 adjRooms
+                /* 2 adjRooms
                 if (lc == 5) {
                     String roomOne = lineData.next();
                     String roomTwo = lineData.next();
                     adjRooms.add(roomOne);
                     adjRooms.add(roomTwo);
                 }
+                */
                 // 3 adjRooms
-                if ((lc <= 2 && lc > 0) ||(lc == 4) || (lc >= 8 && lc <= 10) ||(lc == 12)){
+                if ((lc == 1) || (lc == 3) || (lc == 4) || (lc == 5) || (lc == 6) || (lc >= 8 && lc <= 11)){
                     String roomOne = lineData.next();
                     String roomTwo = lineData.next();
                     String roomThree = lineData.next();
@@ -58,7 +60,7 @@ public class GameBoard {
                     adjRooms.add(roomThree);
                 }
                 // 4 adjRooms
-                if ((lc == 3) || (lc >= 6 && lc <= 7) ||(lc == 11)){
+                if ((lc == 2) || (lc == 7) || (lc == 12)){
                     String roomOne = lineData.next();
                     String roomTwo = lineData.next();
                     String roomThree = lineData.next();
@@ -72,7 +74,7 @@ public class GameBoard {
                 // ranks and roles
                 // TODO condense this into a task that looks for end of line characters
                 // 2 roles
-                if ((lc == 2) || (lc >= 7 && lc <= 8) || (lc == 12)) {
+                if ((lc == 2) || (lc >= 7 && lc <= 8) || (lc == 11) || (lc == 12)) {
                     int rankOne = lineData.nextInt();
                     String roleOne = lineData.next();
                     int rankTwo = lineData.nextInt();
@@ -83,7 +85,7 @@ public class GameBoard {
                     extras.add(extraTwo);
                 }
                 // 3 roles
-                if ((lc == 5) || (lc == 9) || (lc == 11)) {
+                if ((lc == 5) || (lc == 9)) {
                     int rankOne = lineData.nextInt();
                     String roleOne = lineData.next();
                     int rankTwo = lineData.nextInt();
@@ -118,10 +120,53 @@ public class GameBoard {
                 }
                 Room room = null;
                 if (roomName.equals("Trailer")) {
-                    room = new Room(roomName, shots, adjRooms, playerList, extras);
+                    room = new Room(roomName, null, shots, adjRooms, DeadWindow.totalPlayers, extras, 800, 210);
+                } else if (roomName.equals("Casting_Office")) {
+                    room = new Room(roomName, null, shots, adjRooms, DeadWindow.totalPlayers, extras, 23, 390);
                 } else {
+                    Card newCard = selectCard();
                     ArrayList<Player> players = new ArrayList<Player>();
-                    room = new Room(roomName, shots, adjRooms, players, extras);
+                    if (roomName.equals("Main_Street")) {
+                        int x = 766;
+                        int y = 25;
+                        room = new Room(roomName, newCard, shots, adjRooms, players, extras, x, y);
+                    } else if (roomName.equals("Saloon")) {
+                        int x = 500;
+                        int y = 226;
+                        room = new Room(roomName, newCard, shots, adjRooms, players, extras, x, y);
+                    } else if (roomName.equals("Ranch")) {
+                        int x = 200;
+                        int y = 390;
+                        room = new Room(roomName, newCard, shots, adjRooms, players, extras, x, y);
+                    } else if (roomName.equals("Secret_Hideout")) {
+                        int x = 23;
+                        int y = 588;
+                        room = new Room(roomName, newCard, shots, adjRooms, players, extras, x, y);
+                    } else if (roomName.equals("Bank")) {
+                        int x = 497;
+                        int y = 387;
+                        room = new Room(roomName, newCard, shots, adjRooms, players, extras, x, y);
+                    } else if (roomName.equals("Church")) {
+                        int x = 494;
+                        int y = 594;
+                        room = new Room(roomName, newCard, shots, adjRooms, players, extras, x, y);
+                    } else if (roomName.equals("Hotel")) {
+                        int x = 766;
+                        int y = 594;
+                        room = new Room(roomName, newCard, shots, adjRooms, players, extras, x, y);
+                    } else if (roomName.equals("Train_Station")) {
+                        int x = 20;
+                        int y = 60;
+                        room = new Room(roomName, newCard, shots, adjRooms, players, extras, x, y);
+                    } else if (roomName.equals("Jail")) {
+                        int x = 222;
+                        int y = 27;
+                        room = new Room(roomName, newCard, shots, adjRooms, players, extras, x, y);
+                    } else if (roomName.equals("General_Store")) {
+                        int x = 292;
+                        int y = 228;
+                        room = new Room(roomName, newCard, shots, adjRooms, players, extras, x, y);
+                    }
                 }
                 allRooms.add(room);
             } catch (java.util.InputMismatchException e) {
@@ -145,7 +190,7 @@ public class GameBoard {
             for(int i = 0; i < 40; i++){
                 if(lineScanner.hasNextLine()){
                     String line = lineScanner.nextLine();
-                    Scanner cardScanner = new Scanner(line).useDelimiter(" ");
+                    Scanner cardScanner = new Scanner(line).useDelimiter("\\s+");
                     int sNum = cardScanner.nextInt();
                     int budget = cardScanner.nextInt();
                     String sceneName = cardScanner.next();
@@ -188,7 +233,7 @@ public class GameBoard {
     /* enter player names as input
      * create player objects
      * player order is determined here
-     */
+     *
     private ArrayList<Player> createPlayers() {
         ArrayList<Player> newPlayers = new ArrayList<Player>();
         Scanner scanPlayer = new Scanner(System.in);
@@ -209,5 +254,6 @@ public class GameBoard {
         scanPlayer.close();
         return newPlayers;
     }
+    */
 
 }

@@ -4,20 +4,25 @@ public class Room {
 	String roomName;
 	int shotCounters;
 	Card sceneCard;
+	int cardX, cardY;
+	//String cardRotated;
 	ArrayList<String> adjRooms;
 	ArrayList<Player> occupants;
 	ArrayList<SceneExtras> extras;
 	boolean sceneEnd;
 
 	// constructor
-	public Room(String name, int shots, ArrayList<String> rooms, ArrayList<Player> players, ArrayList<SceneExtras> extrasRoles) {
+	public Room(String name, Card card, int shots, ArrayList<String> rooms, ArrayList<Player> players, ArrayList<SceneExtras> extrasRoles, int x, int y) {
 		shotCounters = shots;
-		sceneCard = null;
+		sceneCard = card;
 		roomName = name;
 		adjRooms = rooms;
 		occupants = players;
 		extras = extrasRoles;
 		sceneEnd = false;
+		cardX = x;
+		cardY = y;
+		//cardRotated = rotate;
 	}
 
 	// methods
@@ -70,4 +75,11 @@ public class Room {
 	public boolean getSceneState() {
 		return this.sceneEnd;
 	}
+
+	public int getCardX() {
+		return this.cardX;
+	}
+	 public int getCardY() {
+		return this.cardY;
+	 }
 }

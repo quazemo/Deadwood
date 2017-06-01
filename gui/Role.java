@@ -21,6 +21,7 @@ public class Role {
 	}
 	//
 	void act(Room room, Player player, Die gbDie) {
+		// TODO fix acting
 		int actingChance = gbDie.getValue() + dieRollCounter;
 		if (actingChance >= room.getSceneCard().getBudget()) {
 			// act remove a chip and credits

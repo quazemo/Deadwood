@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.io.*;
 
 public class Player {
 	// attributes
@@ -10,6 +9,7 @@ public class Player {
 	int credits;
 	int rank;
 	String roleName;
+	String guiName;
 	boolean turnHasHappened;
 
 	// constructor
@@ -19,6 +19,7 @@ public class Player {
 		dollars = money;
 		credits = creds;
 		rank = 1;
+		guiName = null;
 		roleName = "no current role"; // no role at start
 		turnHasHappened = false;
 	}

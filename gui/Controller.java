@@ -2,43 +2,57 @@
 /* Controller Class should just initialize objects
  * and run main menu and loops until days are over
  */
+import com.sun.management.MissionControl;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Collections;
+import java.util.*;
+
 public class Controller {
 
 	// attributes
-	int numPlayers;
-	//ArrayList<Player> playerOrder = new ArrayList<Player>();
+	public static int turns;
+	private int cardsFinished;
 
 	// constructor
 	public Controller() {
+		turns = 0;
+		cardsFinished = 0;
 	}
 	// methods
 	/* main */
 	public static void main(String[] args) {
+		//GameBoard gb = new GameBoard();
+		//gb.initBoard();
+		DeadWindow board = new DeadWindow();
+		board.addCardsToBoard();
+		board.createButtons();
+
+		board.setVisible(true);
+		Days days = new Days();
 		GameBoard gb = new GameBoard();
 		gb.initBoard();
-		Days days = new Days();
-		int i = gb.allPlayers.size();
+		Controller missionControl = new Controller();
+		//int i = gb.allPlayers.size();
 		while (days.checkDays()) {
+			// take turns
+
+			/*
 			if (endDayState(gb)) {
 				int d = days.getDay() + 1;
 				days.setDay(d);
 			} else {
-				boolean checkTurns = menu(gb.allPlayers.get(i), gb);
+				/*boolean checkTurns = menu(gb.allPlayers.get(i), gb);
 				if (checkTurns) {
 					i--;
 				}
 				if (i == 1) {
 					i = gb.allPlayers.size();
 				}
-			}
+				*/
 		}
 	}
-	//
+	/*
 	private static boolean menu(Player player, GameBoard gb) {
 		System.out.println("------WELCOME TO DEADWOOD------");
 		String location = player.getLocation();
@@ -86,6 +100,8 @@ public class Controller {
 									}
 								}
 							}
+						} else {
+							System.out.println("You already rehearsed this turn.");
 						}
 						break;
 					case "act":
@@ -101,6 +117,8 @@ public class Controller {
 									}
 								}
 							}
+						} else {
+							System.out.println("You have already acted this turn.");
 						}
 						break;
 					case "end":
@@ -125,6 +143,8 @@ public class Controller {
 						if (!moved) {
 							player.move(gb);
 							moved = true;
+						} else {
+							System.out.println("You have already moved this turn.");
 						}
 						break;
 					case "upgrade":
@@ -150,6 +170,8 @@ public class Controller {
 						if (!moved) {
 							player.move(gb);
 							moved = true;
+						} else {
+							System.out.println("You have already moved this turn.")
 						}
 						break;
 					case "end":
@@ -185,6 +207,8 @@ public class Controller {
 										sRoles++;
 										System.out.print(sRoles + ": ");
 										System.out.println(availableRoles.get(k).getName());
+									} else {
+										System.out.println("No available starring roles on set.");
 									}
 								}
 								int eRoles = k;
@@ -194,6 +218,8 @@ public class Controller {
 										eRoles++;
 										System.out.print(eRoles + ": ");
 										System.out.println(extraRoles.get(l).getName());
+									} else {
+										System.out.println("No available extra roles on set.");
 									}
 								}
 								int job = 0;
@@ -215,6 +241,8 @@ public class Controller {
 						if (!moved) {
 							player.move(gb);
 							moved = true;
+						} else {
+							System.out.println("You already moved this turn.");
 						}
 						break;
 					case "end":
@@ -225,7 +253,59 @@ public class Controller {
 		}
 		return false;
 	}
+	*/
 
+
+	// make deck
+	private ArrayList<Card> createDeck() {
+		File f = new File("Scene_Cards.txt");
+		ArrayList<Role> starring = new ArrayList<Role>();
+		ArrayList<Card> deck = new ArrayList<Card>();
+
+		try{
+			Scanner lineScanner = new Scanner(f);
+			for(int i = 0; i < 40; i++){
+				if(lineScanner.hasNextLine()){
+					String line = lineScanner.nextLine();
+					Scanner cardScanner = new Scanner(line).useDelimiter(" ");
+					int sNum = cardScanner.nextInt();
+					int budget = cardScanner.nextInt();
+					String sceneName = cardScanner.next();
+					while(cardScanner.hasNext()) {
+						try{
+							int rank = cardScanner.nextInt();
+							String name = cardScanner.next();
+							Role role = new Role(rank, name, true, false);
+							starring.add(role);
+						}
+						catch(InputMismatchException e){
+							e.printStackTrace();
+							System.exit(1);
+						}
+					}
+					Card card = new Card(sNum, budget, sceneName, starring);
+					deck.add(card);
+					cardScanner.close();
+				}
+			}
+			lineScanner.close();
+		}
+		catch(FileNotFoundException e){
+			System.out.println("Error: File is not found. \n");
+		}
+		return deck;
+	}
+
+	// randomize card selection
+	protected Card selectCard() {
+		Random randGenerate = new Random();
+		ArrayList<Card> deck = createDeck();
+		int index = randGenerate.nextInt(deck.size());
+		Card selectedCard = deck.get(index);
+		deck.remove(index);
+
+		return selectedCard;
+	}
 	//
 	protected static boolean endDayState(GameBoard gb) {
 		boolean dayOver = false;
