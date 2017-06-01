@@ -9,14 +9,17 @@ public class GameBoard {
         // default
         allRooms = new ArrayList<Room>();
         allPlayers = new ArrayList<Player>();
+
     }
 
     public void initBoard() {
         // add locations
         readRooms();
-
-
-        // add scenes to locations
+        // add card to locations
+        ArrayList<Card> deck = createDeck();
+        for(int i = 0; i < allRooms.size(); i++){
+          allRooms.get(i).setCard(selectCard(deck));
+        }
     }
 
     // read in and make rooms
@@ -96,7 +99,6 @@ public class GameBoard {
           System.out.println("Error: File is not found. \n");
         }
 
-
         /*checking Rooms
         for(int i = 0; i < allRooms.size(); i++){
           System.out.println(allRooms.get(i).getRoomName());
@@ -153,12 +155,11 @@ public class GameBoard {
     }
 
     // randomize card selection
-    protected Card selectCard() {
+    protected Card selectCard(ArrayList<Card> d) {
         Random randGenerate = new Random();
-        ArrayList<Card> deck = createDeck();
-        int index = randGenerate.nextInt(deck.size());
-        Card selectedCard = deck.get(index);
-        deck.remove(index);
+        int index = randGenerate.nextInt(d.size());
+        Card selectedCard = d.get(index);
+        d.remove(index);
 
         return selectedCard;
     }
@@ -191,6 +192,10 @@ public class GameBoard {
         }
         scanPlayer.close();
         return newPlayers;
+    }
+
+    protected ArrayList<Player> getPlayers(){
+      return this.allPlayers;
     }
 
 }

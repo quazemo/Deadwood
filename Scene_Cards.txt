@@ -31,10 +31,10 @@
 25 4 Czechs_in_the_Sonora 5 Opice_(Monkey) 6 Man_with_Gun
 19 6 Swing_'em_Wide 1 Thrifty_Mike 3 Sober_Physician 5 Man_on_Floor
 35 6 Swing_'em_Wide 3 Liberated_Nun 5 Witch_Doctor 6 Voice_of_Reason
-5 4 Trials_of_the_First_Pioneers 2 Burning_Man 4  Cheese_Vendor 5 Hit_with_Table
+5 4 Trials_of_the_First_Pioneers 2 Burning_Man 4 Cheese_Vendor 5 Hit_with_Table
 9 5 How_the_Grinch_Stole_Texas 3 Detective 4 File_Clerk 5 Cindy_Lou
 13 4 J._Robert_Lucky,_Man_of_Substance 1 Man_with_Rope 2 Svetlana 5 Accidental_Victum
 17 5 Thirteen_the_Hard_Way 2 Very_Wet_Man 4 Dejected_Housewife 5 Man_with_Box
 8 4 How_They_Get_Milk 4 Marksman 5 Postal_Worker 6 A_Horse
 19 3 Breakin'_In_Trick_Ponies 2 Fraternity_Pledge 6 Man_with_Sword
-40 5 Custer's_Other_Stands 2 Farmer 4  Exploding_Horse 6 Jack
+40 5 Custer's_Other_Stands 2 Farmer 4 Exploding_Horse 6 Jack

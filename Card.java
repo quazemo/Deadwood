@@ -14,7 +14,6 @@ public class Card {
         cardName = cName;
         starring = sRoles;
         isCardDone = false;
-
     }
     // setters
     protected boolean setCardDone(boolean t) {

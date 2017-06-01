@@ -4,70 +4,103 @@
  */
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
+
 public class Controller {
 
 	// attributes
 	int numPlayers;
+	static int cardsleft;
 	//ArrayList<Player> playerOrder = new ArrayList<Player>();
 
 	// constructor
 	public Controller() {
+		int numPlayers = 0;
+		int cardsleft = 0;
 	}
 	// methods
 	/* main */
 	public static void main(String[] args) {
 		GameBoard gb = new GameBoard();
 		gb.initBoard();
+		ArrayList<Player> all = gb.getPlayers();
 		Days days = new Days();
-		int i = gb.allPlayers.size();
-		while (days.checkDays()) {
-			if (endDayState(gb)) {
-				int d = days.getDay() + 1;
-				days.setDay(d);
-			} else {
-				boolean checkTurns = menu(gb.allPlayers.get(i), gb);
-				if (checkTurns) {
-					i--;
-				}
-				if (i == 1) {
-					i = gb.allPlayers.size();
-				}
+		int i = gb.allPlayers.size() - 1;
+		int numDays = days.getCount() + 1;
+		days.setDay(numDays);
+		while(numDays!= 0) {
+			menu(gb.allPlayers.get(i), gb);
+			if(cardsleft == 1){
+				numDays = numDays - 1;
+			}
+			i--;
+			if(i == 0){
+				i = gb.allPlayers.size() - 1;
 			}
 		}
+		endGame(all);
 	}
-	//
-	private static boolean menu(Player player, GameBoard gb) {
+
+	private static void menu(Player player, GameBoard gb) {
 		System.out.println("------WELCOME TO DEADWOOD------");
 		String location = player.getLocation();
-		Scanner playerInput = null;
-		playerInput.toString().toLowerCase();
 		boolean moved = false;
 		boolean acted = false;
 		boolean upgraded = false;
 		boolean rehearsed = false;
-		String[] options = {"who = displays current player.",
-				"where = what room is current player in.",
-				"move = move to adjacent room.",
-				"work = choose a role to work.",
-				"upgrade = upgrade rank via credits or cash.",
-				"rehearse = add a rehearse chip.",
-				"act = player performs acting role.",
-				"end = end players turn."};
-		while (!playerInput.equals("end")) {
+		String[] options = {
+			  "who = displays current player.",             //0
+				"where = what room is current player in.",    //1
+				"move = move to adjacent room.",              //2
+				"work = choose a role to work.",              //3
+				"upgrade = upgrade rank via credits or cash.",//4
+				"rehearse = add a rehearse chip.",            //5
+				"act = player performs acting role.",         //6
+				"end = end players turn."};                   //7
 
-			playerInput = new Scanner(System.in);
-			System.out.print("Enter one of the following commands: ");
+		System.out.println("Hello " + player.getPlayerName());
+		System.out.print("Enter one of the following commands: ");
+		System.out.println(options[0]); // who
+		System.out.println(options[1]); // where
+		System.out.println(options[2]); // move
+		System.out.println(options[7]); // end
+		Scanner playerInput = new Scanner(System.in);
+
+		//while (!playerInput.hasNext()) {
+
+			switch (playerInput.toString()) {
+				case "who":
+					System.out.println("It is currently " + player.getPlayerName() + "'s turn.");
+					break;
+				case "where":
+					System.out.println("You are in the " + player.getLocation());
+					break;
+				case "move":
+					if (!moved) {
+						player.move(gb);
+						moved = true;
+					}
+					break;
+				case "end":
+					playerInput.close();
+					break;
+					//return true;
+			}
 			// if player is in an acting role
 			if (!player.getRole().equals("no current role")) {
+				System.out.print("Enter one of the following commands: ");
 				System.out.println(options[0]); // who
 				System.out.println(options[1]); // where
 				System.out.println(options[5]); // rehearse
 				System.out.println(options[6]); // act
 				System.out.println(options[7]); // end
-				switch (playerInput.toString()) {
+				playerInput = new Scanner(System.in);
+				String input = playerInput.toString().toLowerCase();
+
+				switch (input) {
 					case "who":
 						System.out.println("It is currently " + player.getPlayerName() + "'s turn.");
 						break;
@@ -105,16 +138,19 @@ public class Controller {
 						break;
 					case "end":
 						playerInput.close();
-						return true;
+						break;
+						//return true;
 				}
 			// if player is not acting and is in the casting office
 			} else if (player.getRole().equals("no current role") && (location.equals("Casting_Office"))) {
 				System.out.println(options[0]); // who
 				System.out.println(options[1]); // where
-				System.out.println(options[3]); // move
+				System.out.println(options[2]); // move
 				System.out.println(options[4]); // upgrade
 				System.out.println(options[7]); // end
-				switch (playerInput.toString()) {
+				playerInput = new Scanner(System.in);
+				String input = playerInput.toString().toLowerCase();
+				switch (input) {
 					case "who":
 						System.out.println("It is currently " + player.getPlayerName() + "'s turn.");
 						break;
@@ -131,15 +167,18 @@ public class Controller {
 						break;
 					case "end":
 						playerInput.close();
-						return true;
+						//return true;
+						break;
 				}
 			// if player is not acting and is in the trailer
 			} else if (player.getRole().equals("no current role") && (location.equals("Trailer"))) {
 				System.out.println(options[0]); // who
 				System.out.println(options[1]); // where
-				System.out.println(options[3]); // move
+				System.out.println(options[2]); // move
 				System.out.println(options[7]); // end
-				switch (playerInput.toString()) {
+				playerInput = new Scanner(System.in);
+				String input = playerInput.toString().toLowerCase();
+				switch (input) {
 					case "who":
 						System.out.println("It is currently " + player.getPlayerName() + "'s turn.");
 						break;
@@ -154,15 +193,17 @@ public class Controller {
 						break;
 					case "end":
 						playerInput.close();
-						return true;
+						break;
+						//return true;
 				}
 			// if player is not acting, and is not in the trailer/casting office
 			} else if (player.getRole().equals("no current role")) {
 				System.out.println(options[0]); // who
 				System.out.println(options[1]); // where
-				System.out.println(options[4]); // work
-				System.out.println(options[3]); // move
+			  System.out.println(options[3]); // work
+				System.out.println(options[2]); // move
 				System.out.println(options[7]); // end
+				playerInput = new Scanner(System.in);
 				switch (playerInput.toString()) {
 					case "who":
 						System.out.println("It is currently " + player.getPlayerName() + "'s turn.");
@@ -219,11 +260,12 @@ public class Controller {
 						break;
 					case "end":
 						playerInput.close();
-						return true;
+						break;
+						//return true;
 				}
 			}
-		}
-		return false;
+		//}
+		//return false;
 	}
 
 	//
@@ -242,39 +284,25 @@ public class Controller {
 		return false;
 	}
 
-	//TODO: finish this plz
 	void endScene(Room curr, Card cardRoom){
 
-		//curr.setSceneclosed = true;
-		cardRoom.setCardDone(true);
-		ArrayList<Player> playersInside = curr.getOccupants();
-		ArrayList <Integer> diceVals = new ArrayList<Integer>();
-		ArrayList <Integer> rankVals = new ArrayList<Integer>();
-		ArrayList<Role> sRoles = cardRoom.getStarringRoles();
-		Die die = new Die();
+	}
 
-		for(int i = 0; i < playersInside.size(); i++){
-			if(playersInside.get(i).getRole().equals("starring")){
-				//star bonus
-				int numDice = cardRoom.getBudget();
-				for (int j = 0; j < numDice; j++){
-					diceVals.add(die.getValue());
-				}
-
-				for(int j = 0; j < sRoles.size(); j++){
-					Role r = sRoles.get(j);
-					rankVals.add(r.getRank());
-				}
-				Collections.sort(diceVals);
-				Collections.sort(rankVals);
-			}
-			System.out.println("You should be getting a Starring bonus \n");
-
-			if(playersInside.get(i).getRole().equals("extra")){
-				//extra bonus
-				System.out.println("You should be getting a Extra bonus \n");
+	public static void endGame(ArrayList<Player> all){
+		int topScore = 0;
+		Player winner = null;
+		for(Player p : all){
+			int dols = p.getDollars();
+			int creds = p.getCredits();
+			int rankScore = p.getRank() * 5;
+			int pScore = dols + creds + rankScore;
+			if(pScore > topScore){
+				pScore = topScore;
+				winner = p;
 			}
 		}
+		System.out.println(winner.getPlayerName() + "Thanks for playing!\n\n Goodbye.");
+		System.exit(0);
 	}
 
 	//

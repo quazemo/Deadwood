@@ -14,7 +14,6 @@ public class Scene {
 		sceneName = scene;
 	}
 
-
 	// setters
 	protected void setBudget(int sceneBudget) {
 		this.budget = sceneBudget;
