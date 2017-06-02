@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Player { //implements Comparable
+public class Player implements Comparable<Player>{ //implements Comparable
 
 	// attributes
 	String name;
@@ -76,11 +76,23 @@ public class Player { //implements Comparable
 		dice.generateRandomNumber();
 	}
 	//
-	int spend() {
-		return 0;
+
+	protected void incDollars(int d) {
+		this.dollars = this.dollars + d;
 	}
-	// setters
 	//
+	protected void incCredits(int c) {
+		this.credits = this.credits + c;
+	}
+
+	protected void decDollars(int d) {
+		this.dollars = this.dollars - d;
+	}
+	//
+	protected void decCredits(int c) {
+		this.credits = this.credits + c;
+	}
+
 	protected void setDollars(int newCashBalance) {
 		this.dollars = newCashBalance;
 	}
@@ -135,11 +147,12 @@ public class Player { //implements Comparable
 		return this.turnHasHappened;
 	}
 
-	/*@Override
+	@Override
 	public int compareTo(Player compareP){
 		int compareRank = ((Player)compareP).getRank();
+		/* For Descending order do like this */
 		return compareRank-this.rank;
-	}*/
+	}
 
 	/*@Override
 	public String toString() {

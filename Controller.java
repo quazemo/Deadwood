@@ -13,20 +13,23 @@ public class Controller {
 	// attributes
 	public static int turns;
 	private int cardsFinished;
+	private static ArrayList<Player> allPlayers;
+	private static int numCards;
 
 	// constructor
 	public Controller() {
 		turns = 0;
 		cardsFinished = 0;
+		numCards = 10;
+
 	}
 	// methods
 	/* main */
 	public static void main(String[] args) {
-		//GameBoard gb = new GameBoard();
-		//gb.initBoard();
 		DeadWindow board = new DeadWindow();
 		board.addCardsToBoard();
 		board.createButtons();
+		allPlayers = board.getAllPlayers();
 
 		board.setVisible(true);
 		Days days = new Days();
@@ -311,26 +314,34 @@ public class Controller {
 		return false;
 	}
 
-	void endScene(Room curr, Card cardRoom){
-
-		//curr.setSceneclosed = true;
-		cardRoom.setCardDone(true);
-		ArrayList<Player> playersInside = curr.getOccupants();
-		//ArrayList <Integer> diceVals = new ArrayList<Integer>();
-		//ArrayList <Integer> rankVals = new ArrayList<Integer>();
+	void endScene(Room currRoom, Player currPlayer){
+		Card cardRoom = currRoom.getSceneCard();
+		ArrayList<Player> playersInside = currRoom.getOccupants();
 		ArrayList<Role> sRoles = cardRoom.getStarringRoles();
-		//Die die = new Die();
-		for(int i = 0; i < playersInside.size(); i++){
-			if(playersInside.get(i).getRole().equals("starring")){
-				//star bonus
-				System.out.println("You should be getting a Starring bonus \n");
+		ArrayList<Player> sPlayers = new ArrayList<Player>();
+		boolean validBonus = getBonus(cardRoom);
+		if(validBonus){
+			//get starr players
+			for(int i = 0; i < playersInside.size(); i++){
+				if(playersInside.get(i).getRole().equals("starring")){
+					sPlayers.add(playersInside.get(i));
+				}
 			}
+			//
+			int calcBonus = starBonus(currPlayer, sPlayers, cardRoom.getBudget());
+			currPlayer.incDollars(calcBonus);
 
-			if(playersInside.get(i).getRole().equals("extra")){
-				//extra bonus
-				System.out.println("You should be getting a Extra bonus \n");
+			for(int i = 0; i < sPlayers.size(); i++){
+				sPlayers.get(i).setRole("no current role");
+			}
+		}else{
+			System.out.println("Card: " + cardRoom.getCardName() + " is complete.");
+			for(int i = 0; i < playersInside.size(); i++){
+				playersInside.get(i).setRole("no current role");
 			}
 		}
+		//decement total num cards
+		numCards = numCards - 1;
 	}
 
 	protected int starBonus(Player curr, ArrayList<Player> starPlayers, int b){
@@ -338,7 +349,35 @@ public class Controller {
 		Player p = null;
 		int calcBonus = 0;
 
-		//Collections.sort(starPlayers);
+		//sorting star players by rank in descending order
+		Collections.sort(starPlayers);
+		for(int i = 0; i < b; i++){
+			Die die = new Die();
+			dieVals.add(die);
+		}
+
+		Collections.sort(dieVals);
+		Collections.reverse(dieVals);
+
+		while(!dieVals.isEmpty()){
+			Die d = dieVals.remove(0);
+			int dols = d.getValue();
+
+			if(!starPlayers.isEmpty()){
+				p = starPlayers.remove(0);
+			}
+			//d.remove();
+			Collections.sort(starPlayers);
+			if(p.getPlayerName() == curr.getPlayerName()){
+				calcBonus = calcBonus + dols;
+			}else{
+				for (int i = 0; i < i++;){
+					if(p.getPlayerName() == allPlayers.get(i).getPlayerName()){
+						allPlayers.get(i).incDollars(dols);
+					}
+				}
+			}
+		}
 		return calcBonus;
 	}
 
