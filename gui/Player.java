@@ -1,7 +1,5 @@
-import java.util.Scanner;
-import java.util.ArrayList;
 
-public class Player {
+public class Player implements Comparable<Player> {
 	// attributes
 	String name;
 	String location;
@@ -49,6 +47,9 @@ public class Player {
 	}
 
 	// getters
+	protected void incDollars(int d) {
+		this.dollars = this.dollars + d;
+	}
 	//
 	public String getPlayerName() {
 		return this.name;
@@ -72,6 +73,13 @@ public class Player {
 	//
 	public String getLocation() {
 		return this.location;
+	}
+
+	@Override
+	public int compareTo(Player compareP){
+		int compareRank = ((Player)compareP).getRank();
+		/* For Descending order do like this */
+		return compareRank-this.rank;
 	}
 	//
 	public boolean getTurn() {

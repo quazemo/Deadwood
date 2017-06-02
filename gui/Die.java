@@ -1,5 +1,5 @@
 import java.util.Random;
-public class Die extends Random {
+public class Die extends Random implements Comparable<Die>{
 	// attributes
 	int dieValue;
 	// constructor
@@ -15,5 +15,12 @@ public class Die extends Random {
 	// getter
 	int getValue() {
 		return dieValue;
+	}
+
+	@Override
+	public int compareTo(Die compareD){
+		int compareVal = ((Die)compareD).getValue();
+		/* For Descending order do like this */
+		return (compareVal-this.dieValue);
 	}
 }

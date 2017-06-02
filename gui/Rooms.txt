@@ -2,7 +2,7 @@ Main_Street 3 Saloon Trailer Jail 1 Railroad_Worker 2 Falls_off_Roof 2 Women_in_
 Saloon 2 Trailer Main_Street General_Store Bank 1 Reluctant_Farmer 2 Women_in_Red_Dress
 Trailer -1 Hotel Saloon Main_Street
 Casting_Office -1 Ranch Train_Station Secret_Hideout
-Ranch 2 Casting_Office Secret_Hideout General_Store 1 Shot_in_Leg 2 Saucy_Fred 3 Man_Under_Horse
+Ranch 2 Casting_Office Secret_Hideout General_Store Bank 1 Shot_in_Leg 2 Saucy_Fred 3 Man_Under_Horse
 Secret_Hideout 3 Church Casting_Office Ranch 1 Clumsy_Pit_Fighter 2 Thug_with_Knife 3 Dangerous_Tom 4 Penny,_who_is_Lost
 Bank 1 Hotel Church Ranch Saloon 3 Flustered_Teller 2 Suspicious_Gentleman
 Church 2 Bank Hotel Secret_Hideout 1 Dead_Man 2 Crying_Woman

@@ -16,6 +16,17 @@ public class DeadWindow extends JFrame {
     private RotatedIcon train;
     private RotatedIcon hotel;
 
+    private JLabel room1;
+    private JLabel room2;
+    private JLabel room3;
+    private JLabel room4;
+    private String roomOneName;
+    private String roomTwoName;
+    private String roomThreeName;
+    private String roomFourName;
+    boolean movedYet;
+    int x1, x2, x3, x4, y1, y2, y3, y4;
+    int availableRooms;
     private JLabel msgLabel;
     private JLabel endTurnButton;
     private JLabel actButton;
@@ -57,7 +68,19 @@ public class DeadWindow extends JFrame {
         totalParts = new ArrayList<GUIPositioningParts>();
         totalRooms = new ArrayList<GUIPositioningRooms>();
         flippedCards = 0;
-
+        x1 = 0;
+        x2 = 0;
+        x3 = 0;
+        x4 = 0;
+        y1 = 0;
+        y2 = 0;
+        y3 = 0;
+        y4 = 0;
+        room1 = null;
+        room2 = null;
+        room3 = null;
+        room4 = null;
+        movedYet = false;
         boardLabel = new JLabel();
         boardPane = getLayeredPane();
         controlPanel = new JPanel();
@@ -102,7 +125,7 @@ public class DeadWindow extends JFrame {
         }
         return totalPlayers.get(nextplayer);
     }
-    class boardMouseListener implements MouseListener {
+    class BoardMouseListener implements MouseListener {
         // listen for buttons else end the day
         // Code for the different button clicks
         public void mouseClicked(MouseEvent e) {
@@ -112,13 +135,135 @@ public class DeadWindow extends JFrame {
                 if (!totalPlayers.get(Controller.turns).getRole().equals("no current role")) {
                     // match with the role, and add a counter to their dice role
                 }
-            } else if (e.getSource() == moveButton) {
+
+            } else if (e.getSource() == moveButton && movedYet == false) {
+                movedYet = true;
                 String playerLocation = totalPlayers.get(Controller.turns).getLocation();
-                // check the adjrooms and make JLabels for those with mouselisteners
+                System.out.println(playerLocation);
+                for (int k = 0; k < GameBoard.allRooms.size(); k++) {
+                    if (GameBoard.allRooms.get(k).getRoomName().equals(playerLocation)) {
+                        // check the adjrooms and make JLabels for those with mouselisteners
+                        availableRooms = GameBoard.allRooms.get(k).getAdjRooms().size();
+
+                        if (availableRooms == 2) {
+                            for (int l = 0; l < totalRooms.size(); l++) {
+                                //System.out.println("room " + l + " is " + GameBoard.allRooms.get(k).adjRooms.get(l));
+                                if (totalRooms.get(l).roomName.equals(GameBoard.allRooms.get(k).adjRooms.get(0))) {
+                                    x1 = totalRooms.get(l).getAreaX();
+                                    y1 = totalRooms.get(l).getAreaY();
+                                    roomOneName = totalRooms.get(l).getRoomName();
+                                }
+                                if (totalRooms.get(l).roomName.equals(GameBoard.allRooms.get(k).adjRooms.get(1))) {
+                                    x2 = totalRooms.get(l).getAreaX();
+                                    y2 = totalRooms.get(l).getAreaY();
+                                    roomTwoName = totalRooms.get(l).getRoomName();
+                                }
+                            }
+                            room1 = new JLabel();
+                            room1.setBounds(x1, y1, 45, 45);
+                            room1.addMouseListener(new RoomMouseListener());
+                            room2 = new JLabel();
+                            room2.setBounds(x2,y2 , 45, 45);
+                            room2.addMouseListener(new RoomMouseListener());
+                            room1.setOpaque(true);
+                            room2.setOpaque(true);
+                            room1.setBackground(Color.gray);
+                            room2.setBackground(Color.gray);
+                            boardPane.add(room1,new Integer(3));
+                            boardPane.add(room2,new Integer(3));
+                        } else if (availableRooms == 3) {
+                            for (int l = 0; l < totalRooms.size(); l++) {
+                                //System.out.println("room" + l + " is " + GameBoard.allRooms.get(k).adjRooms.get(l));
+                                if (totalRooms.get(l).roomName.equals(GameBoard.allRooms.get(k).adjRooms.get(0))) {
+                                    x1 = totalRooms.get(l).getAreaX();
+                                    y1 = totalRooms.get(l).getAreaY();
+                                    roomOneName = totalRooms.get(l).getRoomName();
+                                }
+                                if (totalRooms.get(l).roomName.equals(GameBoard.allRooms.get(k).adjRooms.get(1))) {
+                                    x2 = totalRooms.get(l).getAreaX();
+                                    y2 = totalRooms.get(l).getAreaY();
+                                    roomTwoName = totalRooms.get(l).getRoomName();
+                                }
+                                if (totalRooms.get(l).roomName.equals(GameBoard.allRooms.get(k).adjRooms.get(2))) {
+                                    x3 = totalRooms.get(l).getAreaX();
+                                    y3 = totalRooms.get(l).getAreaY();
+                                    roomThreeName = totalRooms.get(l).getRoomName();
+                                }
+                            }
+                            room1 = new JLabel();
+                            room1.setBounds(x1, y1, 45, 45);
+                            room1.addMouseListener(new RoomMouseListener());
+                            room2 = new JLabel();
+                            room2.setBounds(x2, y2 , 45, 45);
+                            room2.addMouseListener(new RoomMouseListener());
+                            room3 = new JLabel();
+                            room3.setBounds(x3, y3 , 45, 45);
+                            room3.addMouseListener(new RoomMouseListener());
+                            room1.setOpaque(true);
+                            room2.setOpaque(true);
+                            room3.setOpaque(true);
+                            room1.setBackground(Color.gray);
+                            room2.setBackground(Color.gray);
+                            room3.setBackground(Color.gray);
+                            boardPane.add(room1,new Integer(3));
+                            boardPane.add(room2,new Integer(3));
+                            boardPane.add(room3,new Integer(3));
+                        } else if (availableRooms == 4) {
+                            for (int l = 0; l < totalRooms.size(); l++) {
+                                //System.out.println("room" + l + " is " + GameBoard.allRooms.get(k).adjRooms.get(l));
+                                if (totalRooms.get(l).roomName.equals(GameBoard.allRooms.get(k).adjRooms.get(0))) {
+                                    x1 = totalRooms.get(l).getAreaX();
+                                    y1 = totalRooms.get(l).getAreaY();
+                                    roomOneName = totalRooms.get(l).getRoomName();
+                                }
+                                if (totalRooms.get(l).roomName.equals(GameBoard.allRooms.get(k).adjRooms.get(1))) {
+                                    x2 = totalRooms.get(l).getAreaX();
+                                    y2 = totalRooms.get(l).getAreaY();
+                                    roomTwoName = totalRooms.get(l).getRoomName();
+                                }
+                                if (totalRooms.get(l).roomName.equals(GameBoard.allRooms.get(k).adjRooms.get(2))) {
+                                    x3 = totalRooms.get(l).getAreaX();
+                                    y3 = totalRooms.get(l).getAreaY();
+                                    roomThreeName = totalRooms.get(l).getRoomName();
+                                }
+                                if (totalRooms.get(l).roomName.equals(GameBoard.allRooms.get(k).adjRooms.get(3))) {
+                                    x4 = totalRooms.get(l).getAreaX();
+                                    y4 = totalRooms.get(l).getAreaY();
+                                    roomFourName = totalRooms.get(l).getRoomName();
+                                }
+                            }
+                            room1 = new JLabel();
+                            room1.setBounds(x1, y1, 45, 45);
+                            room1.addMouseListener(new RoomMouseListener());
+                            room2 = new JLabel();
+                            room2.setBounds(x2,y2 , 45, 45);
+                            room2.addMouseListener(new RoomMouseListener());
+                            room3 = new JLabel();
+                            room3.setBounds(x3,y3 , 45, 45);
+                            room3.addMouseListener(new RoomMouseListener());
+                            room4 = new JLabel();
+                            room4.setBounds(x4,y4 , 45, 45);
+                            room4.addMouseListener(new RoomMouseListener());
+                            room1.setOpaque(true);
+                            room2.setOpaque(true);
+                            room3.setOpaque(true);
+                            room4.setOpaque(true);
+                            room1.setBackground(Color.gray);
+                            room2.setBackground(Color.gray);
+                            room3.setBackground(Color.gray);
+                            room4.setBackground(Color.gray);
+                            boardPane.add(room1,new Integer(3));
+                            boardPane.add(room2,new Integer(3));
+                            boardPane.add(room3,new Integer(3));
+                            boardPane.add(room4,new Integer(3));
+                        }
+                    }
+                }
                 // if they click that listener then move their dice position and change their string playerLocation
             } else if (e.getSource() == cancelButton) {
                 // maybe??? something???
             } else if (e.getSource() == endTurnButton) {
+                movedYet = false;
                 System.out.println("end of player " + (Controller.turns+1) + " turn");
                 if (Controller.turns == (totalPlayers.size()-1)) {
                     Controller.turns = 0;
@@ -130,8 +275,127 @@ public class DeadWindow extends JFrame {
             } else if (e.getSource() == roleDieButton) {
                 // role a die to act etc???
             }
+            boardPane.revalidate();
+            boardPane.repaint();
         }
 
+        public void mousePressed(MouseEvent e) {
+        }
+
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    public Room findRoom(String roomName) {
+        Room rm = null;
+        for (int i = 0; i < GameBoard.allRooms.size(); i++) {
+            if (GameBoard.allRooms.get(i).getRoomName().equals(roomName)) {
+                rm = GameBoard.allRooms.get(i);
+            }
+        }
+        return rm;
+    }
+
+    class RoomMouseListener implements MouseListener {
+        public void mouseClicked(MouseEvent e) {
+            boardPane.remove(playerDice.get(Controller.turns).getPlayer());
+            if (e.getSource() == room1) {
+                if (availableRooms == 2) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                }
+                if (availableRooms == 3) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                    boardPane.remove(room3);
+                }
+                if (availableRooms == 4) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                    boardPane.remove(room3);
+                    boardPane.remove(room4);
+                }
+                Room rm = findRoom(roomOneName);
+                rm.addPlayer(totalPlayers.get(Controller.turns));
+                totalPlayers.get(Controller.turns).setPlayerLocation(roomOneName);
+                playerDice.get(Controller.turns).getPlayer().setBounds(x1, y1, playerDice.get(Controller.turns).getGuiName().getIconWidth(), playerDice.get(Controller.turns).getGuiName().getIconHeight());
+                boardPane.add(playerDice.get(Controller.turns).getPlayer());
+            } else if (e.getSource() == room2) {
+                if (availableRooms == 2) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                }
+                if (availableRooms == 3) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                    boardPane.remove(room3);
+                }
+                if (availableRooms == 4) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                    boardPane.remove(room3);
+                    boardPane.remove(room4);
+                }
+                Room rm = findRoom(roomTwoName);
+                rm.addPlayer(totalPlayers.get(Controller.turns));
+                totalPlayers.get(Controller.turns).setPlayerLocation(roomTwoName);
+                playerDice.get(Controller.turns).getPlayer().setBounds(x2, y2, playerDice.get(Controller.turns).getGuiName().getIconWidth(), playerDice.get(Controller.turns).getGuiName().getIconHeight());
+
+                boardPane.add(playerDice.get(Controller.turns).getPlayer());
+            } else if (e.getSource() == room3) {
+                if (availableRooms == 2) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                }
+                if (availableRooms == 3) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                    boardPane.remove(room3);
+                }
+                if (availableRooms == 4) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                    boardPane.remove(room3);
+                    boardPane.remove(room4);
+                }
+                Room rm = findRoom(roomThreeName);
+                rm.addPlayer(totalPlayers.get(Controller.turns));
+                totalPlayers.get(Controller.turns).setPlayerLocation(roomThreeName);
+                playerDice.get(Controller.turns).getPlayer().setBounds(x3, y3, playerDice.get(Controller.turns).getGuiName().getIconWidth(), playerDice.get(Controller.turns).getGuiName().getIconHeight());
+
+                boardPane.add(playerDice.get(Controller.turns).getPlayer());
+            } else if (e.getSource() == room4) {
+                if (availableRooms == 2) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                }
+                if (availableRooms == 3) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                    boardPane.remove(room3);
+                }
+                if (availableRooms == 4) {
+                    boardPane.remove(room1);
+                    boardPane.remove(room2);
+                    boardPane.remove(room3);
+                    boardPane.remove(room4);
+                }
+                Room rm = findRoom(roomFourName);
+                rm.addPlayer(totalPlayers.get(Controller.turns));
+                totalPlayers.get(Controller.turns).setPlayerLocation(roomFourName);
+                playerDice.get(Controller.turns).getPlayer().setBounds(x4, y4, playerDice.get(Controller.turns).getGuiName().getIconWidth(), playerDice.get(Controller.turns).getGuiName().getIconHeight());
+
+                boardPane.add(playerDice.get(Controller.turns).getPlayer());
+            }
+            boardPane.revalidate();
+            boardPane.repaint();
+        }
         public void mousePressed(MouseEvent e) {
         }
 
@@ -152,43 +416,43 @@ public class DeadWindow extends JFrame {
         ImageIcon rIcon = new ImageIcon("buttons/rehearseButton.png");
         rehearseButton.setIcon(rIcon);
         rehearseButton.setBounds(949, 0, rIcon.getIconWidth(), rIcon.getIconHeight());
-        rehearseButton.addMouseListener(new boardMouseListener());
+        rehearseButton.addMouseListener(new BoardMouseListener());
         // act
         actButton = new JLabel();
         ImageIcon aIcon = new ImageIcon("buttons/actButton.png");
         actButton.setIcon(aIcon);
         actButton.setBounds(949, 100, aIcon.getIconWidth(), aIcon.getIconHeight());
-        actButton.addMouseListener(new boardMouseListener());
+        actButton.addMouseListener(new BoardMouseListener());
         // move
         moveButton = new JLabel();
         ImageIcon mIcon = new ImageIcon("buttons/moveButton.png");
         moveButton.setIcon(mIcon);
         moveButton.setBounds(949, 200, mIcon.getIconWidth(), mIcon.getIconHeight());
-        moveButton.addMouseListener(new boardMouseListener());
+        moveButton.addMouseListener(new BoardMouseListener());
         // cancel
         cancelButton = new JLabel();
         ImageIcon cIcon = new ImageIcon("buttons/cancelButton.png");
         cancelButton.setIcon(cIcon);
         cancelButton.setBounds(949, 300, cIcon.getIconWidth(), cIcon.getIconHeight());
-        cancelButton.addMouseListener(new boardMouseListener());
+        cancelButton.addMouseListener(new BoardMouseListener());
         // upgrade
         upgradeButton = new JLabel();
         ImageIcon uIcon = new ImageIcon("buttons/upgradeButton.png");
         upgradeButton.setIcon(uIcon);
         upgradeButton.setBounds(949, 400, uIcon.getIconWidth(), uIcon.getIconHeight());
-        upgradeButton.addMouseListener(new boardMouseListener());
+        upgradeButton.addMouseListener(new BoardMouseListener());
         // role die
         roleDieButton = new JLabel();
         ImageIcon roleIcon = new ImageIcon("buttons/roleDieButton.png");
         roleDieButton.setIcon(roleIcon);
         roleDieButton.setBounds(949, 500, roleIcon.getIconWidth(), roleIcon.getIconHeight());
-        roleDieButton.addMouseListener(new boardMouseListener());
+        roleDieButton.addMouseListener(new BoardMouseListener());
         // end turn
         endTurnButton = new JLabel();
         ImageIcon eIcon = new ImageIcon("buttons/endButton.png");
         endTurnButton.setIcon(eIcon);
         endTurnButton.setBounds(949, 600, eIcon.getIconWidth(), eIcon.getIconHeight());
-        endTurnButton.addMouseListener(new boardMouseListener());
+        endTurnButton.addMouseListener(new BoardMouseListener());
 
         // add buttons to board layer three
         boardPane.add(rehearseButton,new Integer(3));
@@ -320,7 +584,7 @@ public class DeadWindow extends JFrame {
                 yBound += 0;
             }
             playa.add(pl);
-            Player newDeadwoodPlayer = new Player(player, "trailer", 0, 0);
+            Player newDeadwoodPlayer = new Player(player, "Trailer", 0, 0);
             totalPlayers.add(newDeadwoodPlayer);
         }
         return playa;
@@ -409,7 +673,13 @@ public class DeadWindow extends JFrame {
     }
 
     public void addShotCounters(Room room) {
-        if (room.getRoomName().equals("Train_Station")) {
+        if (room.getRoomName().equals("Trailer")) {
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Trailer", 825, 220); // good
+            totalRooms.add(roomDetails);
+        } else if (room.getRoomName().equals("Casting_Office")) {
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Casting_Office", 24, 390); // good
+            totalRooms.add(roomDetails);
+        } else if (room.getRoomName().equals("Train_Station")) {
             JLabel trainShot1 = new JLabel();
             JLabel trainShot2 = new JLabel();
             JLabel trainShot3 = new JLabel();
@@ -439,7 +709,7 @@ public class DeadWindow extends JFrame {
             room.GUIShots.add(trainShot3);
 
             // add room details while we are at it
-            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Train_Station", 21, 100);
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Train_Station", 16, 160);
             totalRooms.add(roomDetails);
             // add part details while we are at it
             GUIPositioningParts part1 = new GUIPositioningParts("Train_Station", "Crusty_Prospector", 114, 227);
@@ -461,7 +731,7 @@ public class DeadWindow extends JFrame {
             room.GUIShots.add(jailShot1);
 
             // add room details while we are at it
-            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Jail", 281, 110);
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Jail", 281, 116);
             totalRooms.add(roomDetails);
             // ''
             GUIPositioningParts part1 = new GUIPositioningParts("Jail", "Prisoner_In_Cell", 419, 25);
@@ -487,7 +757,7 @@ public class DeadWindow extends JFrame {
             room.GUIShots.add(generalShot2);
 
             // ''
-            GUIPositioningRooms roomDetails = new GUIPositioningRooms("General_Store", 370, 282);
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("General_Store", 310, 300);
             totalRooms.add(roomDetails);
             // ''
             GUIPositioningParts part1 = new GUIPositioningParts("General_Store", "Main_in_Overalls", 236, 237);
@@ -513,7 +783,7 @@ public class DeadWindow extends JFrame {
             room.GUIShots.add(saloonShot2);
 
             // ''
-            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Saloon", 632, 280);
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Saloon", 632, 300);
             totalRooms.add(roomDetails);
             // ''
             GUIPositioningParts part1 = new GUIPositioningParts("Saloon", "Reluctant_Farmer",777, 300);
@@ -551,7 +821,7 @@ public class DeadWindow extends JFrame {
             room.GUIShots.add(mainShot3);
 
             // ''
-            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Main_Street", 919, 30);
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Main_Street", 739, 130);
             totalRooms.add(roomDetails);
             // ''
             GUIPositioningParts part1 = new GUIPositioningParts("Main_Street", "Railroad_Worker", 637, 22);
@@ -621,7 +891,7 @@ public class DeadWindow extends JFrame {
             room.GUIShots.add(secretShot3);
 
             // ''
-            GUIPositioningRooms roomDetail = new GUIPositioningRooms("Secret_Hideout", 27, 732);
+            GUIPositioningRooms roomDetail = new GUIPositioningRooms("Secret_Hideout", 260, 522);
             totalRooms.add(roomDetail);
             // ''
             GUIPositioningParts part1 = new GUIPositioningParts("Secret_Hideout", "Clumsy_Pit_Fighter", 435, 719);
@@ -668,7 +938,7 @@ public class DeadWindow extends JFrame {
             room.GUIShots.add(churchShot2);
 
             // ''
-            GUIPositioningRooms roomDetail = new GUIPositioningRooms("Church", 523, 590);
+            GUIPositioningRooms roomDetail = new GUIPositioningRooms("Church", 600, 568);
             totalRooms.add(roomDetail);
             // ''
             GUIPositioningParts part1 = new GUIPositioningParts("Church", "Dead_Man", 800, 600);
@@ -705,7 +975,7 @@ public class DeadWindow extends JFrame {
             room.GUIShots.add(hotelShot3);
 
             // ''
-            GUIPositioningRooms roomDetail = new GUIPositioningRooms("Hotel", 900, 550);
+            GUIPositioningRooms roomDetail = new GUIPositioningRooms("Hotel", 900, 520);
             totalRooms.add(roomDetail);
             // ''
             GUIPositioningParts part1 = new GUIPositioningParts("Hotel", "Sleeping_Drunkard", 910, 390);

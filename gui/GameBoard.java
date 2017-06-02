@@ -41,7 +41,7 @@ public class GameBoard {
                 shots = lineData.nextInt();
                 //System.out.println("shots: " + shots);
                 ArrayList<String> adjRooms = new ArrayList<String>();
-                ArrayList<SceneExtras> extras = new ArrayList<SceneExtras>();
+                ArrayList<Role> extras = new ArrayList<Role>();
                 /* 2 adjRooms
                 if (lc == 5) {
                     String roomOne = lineData.next();
@@ -51,7 +51,7 @@ public class GameBoard {
                 }
                 */
                 // 3 adjRooms
-                if ((lc == 1) || (lc == 3) || (lc == 4) || (lc == 5) || (lc == 6) || (lc >= 8 && lc <= 11)){
+                if ((lc == 1) || (lc == 3) || (lc == 4) || (lc == 6) || (lc >= 8 && lc <= 11)){
                     String roomOne = lineData.next();
                     String roomTwo = lineData.next();
                     String roomThree = lineData.next();
@@ -60,7 +60,7 @@ public class GameBoard {
                     adjRooms.add(roomThree);
                 }
                 // 4 adjRooms
-                if ((lc == 2) || (lc == 7) || (lc == 12)){
+                if ((lc == 2) || (lc == 5) || (lc == 7) || (lc == 12)){
                     String roomOne = lineData.next();
                     String roomTwo = lineData.next();
                     String roomThree = lineData.next();
@@ -72,15 +72,14 @@ public class GameBoard {
                 }
                 //
                 // ranks and roles
-                // TODO condense this into a task that looks for end of line characters
                 // 2 roles
                 if ((lc == 2) || (lc >= 7 && lc <= 8) || (lc == 11) || (lc == 12)) {
                     int rankOne = lineData.nextInt();
                     String roleOne = lineData.next();
                     int rankTwo = lineData.nextInt();
                     String roleTwo = lineData.next();
-                    SceneExtras extraOne = new SceneExtras(rankOne, roleOne);
-                    SceneExtras extraTwo = new SceneExtras(rankTwo, roleTwo);
+                    Role extraOne = new Role(rankOne, roleOne, false, false);
+                    Role extraTwo = new Role(rankTwo, roleTwo, false, false);
                     extras.add(extraOne);
                     extras.add(extraTwo);
                 }
@@ -92,9 +91,9 @@ public class GameBoard {
                     String roleTwo = lineData.next();
                     int rankThree = lineData.nextInt();
                     String roleThree = lineData.next();
-                    SceneExtras extraOne = new SceneExtras(rankOne, roleOne);
-                    SceneExtras extraTwo = new SceneExtras(rankTwo, roleTwo);
-                    SceneExtras extraThree = new SceneExtras(rankThree, roleThree);
+                    Role extraOne = new Role(rankOne, roleOne, false, false);
+                    Role extraTwo = new Role(rankTwo, roleTwo, false, false);
+                    Role extraThree = new Role(rankThree, roleThree, false, false);
                     extras.add(extraOne);
                     extras.add(extraTwo);
                     extras.add(extraThree);
@@ -109,10 +108,10 @@ public class GameBoard {
                     String roleThree = lineData.next();
                     int rankFour = lineData.nextInt();
                     String roleFour = lineData.next();
-                    SceneExtras extraOne = new SceneExtras(rankOne, roleOne);
-                    SceneExtras extraTwo = new SceneExtras(rankTwo, roleTwo);
-                    SceneExtras extraThree = new SceneExtras(rankThree, roleThree);
-                    SceneExtras extraFour = new SceneExtras(rankFour, roleFour);
+                    Role extraOne = new Role(rankOne, roleOne, false, false);
+                    Role extraTwo = new Role(rankTwo, roleTwo, false, false);
+                    Role extraThree = new Role(rankThree, roleThree, false, false);
+                    Role extraFour = new Role(rankFour, roleFour, false, false);
                     extras.add(extraOne);
                     extras.add(extraTwo);
                     extras.add(extraThree);
@@ -229,31 +228,4 @@ public class GameBoard {
 
         return selectedCard;
     }
-
-    /* enter player names as input
-     * create player objects
-     * player order is determined here
-     *
-    private ArrayList<Player> createPlayers() {
-        ArrayList<Player> newPlayers = new ArrayList<Player>();
-        Scanner scanPlayer = new Scanner(System.in);
-
-        System.out.print("Enter the number of players: ");
-        int players = scanPlayer.nextInt();
-        while (players < 0 || players > 4) {
-            System.out.println("Please enter a valid number of players (e.g. 1-4)");
-            players = scanPlayer.nextInt();
-        }
-        for (int i = 0; i < players; i++) {
-            System.out.println("Enter player " + (i + 1) + "'s name: ");
-            String name = scanPlayer.next();
-            Player player = new Player(name, "Trailer", 0, 0);
-            allPlayers.add(player);
-            newPlayers.add(player);
-        }
-        scanPlayer.close();
-        return newPlayers;
-    }
-    */
-
 }
