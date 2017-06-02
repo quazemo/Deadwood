@@ -10,12 +10,12 @@ public class Room {
 	//String cardRotated;
 	ArrayList<String> adjRooms;
 	ArrayList<Player> occupants;
-	ArrayList<SceneExtras> extras;
+	ArrayList<Role> extras;
 	ArrayList<JLabel> GUIShots;
 	boolean sceneEnd;
 
 	// constructor
-	public Room(String name, Card card, int shots, ArrayList<String> rooms, ArrayList<Player> players, ArrayList<SceneExtras> extrasRoles, int x, int y) {
+	public Room(String name, Card card, int shots, ArrayList<String> rooms, ArrayList<Player> players, ArrayList<Role> extrasRoles, int x, int y) {
 		shotCounters = shots;
 		sceneCard = card;
 		roomName = name;
@@ -63,7 +63,7 @@ public class Room {
 		return this.occupants;
 	}
 	//
-	public ArrayList<SceneExtras> getExtras() {
+	public ArrayList<Role> getExtras() {
 		return this.extras;
 	}
 	//

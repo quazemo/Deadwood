@@ -44,6 +44,8 @@ public class DeadWindow extends JFrame {
 
     private ArrayList<GUIPlayer> playerDice;
     public static ArrayList<Player> totalPlayers;
+    public static ArrayList<GUIPositioningParts> totalParts;
+    public static ArrayList<GUIPositioningRooms> totalRooms;
 
     JLayeredPane boardPane;
 
@@ -52,6 +54,8 @@ public class DeadWindow extends JFrame {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         totalPlayers = new ArrayList<Player>();
+        totalParts = new ArrayList<GUIPositioningParts>();
+        totalRooms = new ArrayList<GUIPositioningRooms>();
         flippedCards = 0;
 
         boardLabel = new JLabel();
@@ -405,7 +409,6 @@ public class DeadWindow extends JFrame {
     }
 
     public void addShotCounters(Room room) {
-        /* train station shots */
         if (room.getRoomName().equals("Train_Station")) {
             JLabel trainShot1 = new JLabel();
             JLabel trainShot2 = new JLabel();
@@ -435,49 +438,284 @@ public class DeadWindow extends JFrame {
             room.GUIShots.add(trainShot2);
             room.GUIShots.add(trainShot3);
 
+            // add room details while we are at it
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Train_Station", 21, 100);
+            totalRooms.add(roomDetails);
+            // add part details while we are at it
+            GUIPositioningParts part1 = new GUIPositioningParts("Train_Station", "Crusty_Prospector", 114, 227);
+            GUIPositioningParts part2 = new GUIPositioningParts("Train_Station", "Dragged_by_Train", 51, 268);
+            GUIPositioningParts part3 = new GUIPositioningParts("Train_Station", "Preacher_with_Bag", 114, 320);
+            GUIPositioningParts part4 = new GUIPositioningParts("Train_Station", "Cyrus_the_Gunfighter", 49, 356);
+            totalParts.add(part1);
+            totalParts.add(part2);
+            totalParts.add(part3);
+            totalParts.add(part4);
+
         } else if (room.getRoomName().equals("Jail")) {
-        /* jail shots */
             JLabel jailShot1 = new JLabel();
             ImageIcon jShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
             jailShot1.setIcon(jShot1);
-            jailShot1.setBounds(290, 100, jShot1.getIconWidth(), jShot1.getIconHeight());
+            jailShot1.setBounds(350, 125, jShot1.getIconWidth(), jShot1.getIconHeight());
             jailShot1.setOpaque(false);
             boardPane.add(jailShot1, new Integer(2));
             room.GUIShots.add(jailShot1);
+
+            // add room details while we are at it
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Jail", 281, 110);
+            totalRooms.add(roomDetails);
+            // ''
+            GUIPositioningParts part1 = new GUIPositioningParts("Jail", "Prisoner_In_Cell", 419, 25);
+            GUIPositioningParts part2 = new GUIPositioningParts("Jail", "Feller_in_Irons", 419, 105);
+            totalParts.add(part1);
+            totalParts.add(part2);
+
         } else if (room.getRoomName().equals("General_Store")) {
             JLabel generalShot1 = new JLabel();
             ImageIcon gsShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
             generalShot1.setIcon(gsShot1);
-            generalShot1.setBounds(190, 190, gsShot1.getIconWidth(), gsShot1.getIconHeight());
+            generalShot1.setBounds(249, 224, gsShot1.getIconWidth(), gsShot1.getIconHeight());
             generalShot1.setOpaque(false);
             JLabel generalShot2 = new JLabel();
             ImageIcon gsShot2 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
             generalShot2.setIcon(gsShot2);
-            generalShot2.setBounds(230, 190, gsShot2.getIconWidth(), gsShot2.getIconHeight());
+            generalShot2.setBounds(249, 266, gsShot2.getIconWidth(), gsShot2.getIconHeight());
             generalShot2.setOpaque(false);
             boardPane.add(generalShot1,new Integer(2));
             boardPane.add(generalShot2,new Integer(2));
 
             room.GUIShots.add(generalShot1);
             room.GUIShots.add(generalShot2);
+
+            // ''
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("General_Store", 370, 282);
+            totalRooms.add(roomDetails);
+            // ''
+            GUIPositioningParts part1 = new GUIPositioningParts("General_Store", "Main_in_Overalls", 236, 237);
+            GUIPositioningParts part2 = new GUIPositioningParts("General_Store", "Mister_Keach", 236, 290);
+            totalParts.add(part1);
+            totalParts.add(part2);
+
         } else if (room.getRoomName().equals("Saloon")) {
             JLabel saloonShot1 = new JLabel();
             ImageIcon sShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
             saloonShot1.setIcon(sShot1);
-            saloonShot1.setBounds(390, 130, sShot1.getIconWidth(), sShot1.getIconHeight());
+            saloonShot1.setBounds(496, 173, sShot1.getIconWidth(), sShot1.getIconHeight());
             saloonShot1.setOpaque(false);
             JLabel saloonShot2 = new JLabel();
             ImageIcon sShot2 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
             saloonShot2.setIcon(sShot2);
-            saloonShot2.setBounds(430, 130, sShot2.getIconWidth(), sShot2.getIconHeight());
+            saloonShot2.setBounds(537, 173, sShot2.getIconWidth(), sShot2.getIconHeight());
             saloonShot2.setOpaque(false);
             boardPane.add(saloonShot1,new Integer(2));
             boardPane.add(saloonShot2,new Integer(2));
 
             room.GUIShots.add(saloonShot1);
             room.GUIShots.add(saloonShot2);
-        } else if (room.getRoomName().equals("")) {
 
+            // ''
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Saloon", 632, 280);
+            totalRooms.add(roomDetails);
+            // ''
+            GUIPositioningParts part1 = new GUIPositioningParts("Saloon", "Reluctant_Farmer",777, 300);
+            GUIPositioningParts part2 = new GUIPositioningParts("Saloon", "Woman_in_Red_Dress", 777, 240);
+            totalParts.add(part1);
+            totalParts.add(part2);
+
+        } else if (room.getRoomName().equals("Main_Street")) {
+            JLabel mainShot1 = new JLabel();
+            JLabel mainShot2 = new JLabel();
+            JLabel mainShot3 = new JLabel();
+
+            ImageIcon mShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            ImageIcon mShot2 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            ImageIcon mShot3 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+
+            mainShot1.setIcon(mShot1);
+            mainShot2.setIcon(mShot2);
+            mainShot3.setIcon(mShot3);
+
+            mainShot1.setBounds(637, 20, mShot1.getIconWidth(), mShot1.getIconHeight());
+            mainShot2.setBounds(678, 20, mShot2.getIconWidth(), mShot2.getIconHeight());
+            mainShot3.setBounds(721, 20, mShot3.getIconWidth(), mShot3.getIconHeight());
+
+            mainShot1.setOpaque(false);
+            mainShot2.setOpaque(false);
+            mainShot3.setOpaque(false);
+
+            boardPane.add(mainShot1, new Integer(2));
+            boardPane.add(mainShot2, new Integer(2));
+            boardPane.add(mainShot3, new Integer(2));
+
+            room.GUIShots.add(mainShot1);
+            room.GUIShots.add(mainShot2);
+            room.GUIShots.add(mainShot3);
+
+            // ''
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Main_Street", 919, 30);
+            totalRooms.add(roomDetails);
+            // ''
+            GUIPositioningParts part1 = new GUIPositioningParts("Main_Street", "Railroad_Worker", 637, 22);
+            GUIPositioningParts part2 = new GUIPositioningParts("Main_Street", "Falls_off_Roof", 720, 22);
+            GUIPositioningParts part3 = new GUIPositioningParts("Main_Street", "Woman_in_Black_Dress", 637, 105);
+            GUIPositioningParts part4 = new GUIPositioningParts("Main_Street", "Mayor_McGinty", 720, 105);
+            totalParts.add(part1);
+            totalParts.add(part2);
+            totalParts.add(part3);
+            totalParts.add(part4);
+
+        } else if (room.getRoomName().equals("Ranch")) {
+            JLabel ranchShot1 = new JLabel();
+            ImageIcon rShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            ranchShot1.setIcon(rShot1);
+            ranchShot1.setBounds(375, 380, rShot1.getIconWidth(), rShot1.getIconHeight());
+            ranchShot1.setOpaque(false);
+            JLabel ranchShot2 = new JLabel();
+            ImageIcon rShot2 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            ranchShot2.setIcon(rShot2);
+            ranchShot2.setBounds(416, 380, rShot2.getIconWidth(), rShot2.getIconHeight());
+            ranchShot2.setOpaque(false);
+            boardPane.add(ranchShot1,new Integer(2));
+            boardPane.add(ranchShot2,new Integer(2));
+
+            room.GUIShots.add(ranchShot1);
+            room.GUIShots.add(ranchShot2);
+
+            // ''
+            GUIPositioningRooms roomDetails = new GUIPositioningRooms("Ranch", 252, 478);
+            totalRooms.add(roomDetails);
+            // ''
+            GUIPositioningParts part1 = new GUIPositioningParts("Ranch", "Shot_in_Leg", 412, 608);
+            GUIPositioningParts part2 = new GUIPositioningParts("Ranch", "Saucy_Fred", 488, 608);
+            GUIPositioningParts part3 = new GUIPositioningParts("Ranch", "Man_Under_Horse", 488, 525);
+            totalParts.add(part1);
+            totalParts.add(part2);
+            totalParts.add(part3);
+
+        } else if (room.getRoomName().equals("Secret_Hideout")) {
+            JLabel secretShot1 = new JLabel();
+            JLabel secretShot2 = new JLabel();
+            JLabel secretShot3 = new JLabel();
+
+            ImageIcon scShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            ImageIcon scShot2 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            ImageIcon scShot3 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+
+            secretShot1.setIcon(scShot1);
+            secretShot2.setIcon(scShot2);
+            secretShot3.setIcon(scShot3);
+
+            secretShot1.setBounds(196, 610, scShot1.getIconWidth(), scShot1.getIconHeight());
+            secretShot2.setBounds(236, 610, scShot2.getIconWidth(), scShot2.getIconHeight());
+            secretShot3.setBounds(280, 610, scShot3.getIconWidth(), scShot3.getIconHeight());
+
+            secretShot1.setOpaque(false);
+            secretShot2.setOpaque(false);
+            secretShot3.setOpaque(false);
+
+            boardPane.add(secretShot1, new Integer(2));
+            boardPane.add(secretShot2, new Integer(2));
+            boardPane.add(secretShot3, new Integer(2));
+
+            room.GUIShots.add(secretShot1);
+            room.GUIShots.add(secretShot2);
+            room.GUIShots.add(secretShot3);
+
+            // ''
+            GUIPositioningRooms roomDetail = new GUIPositioningRooms("Secret_Hideout", 27, 732);
+            totalRooms.add(roomDetail);
+            // ''
+            GUIPositioningParts part1 = new GUIPositioningParts("Secret_Hideout", "Clumsy_Pit_Fighter", 435, 719);
+            GUIPositioningParts part2 = new GUIPositioningParts("Secret_Hideout", "Thug_with_Knife", 521, 719);
+            GUIPositioningParts part3 = new GUIPositioningParts("Secret_Hideout", "Dangerous_Tom", 435, 808);
+            GUIPositioningParts part4 = new GUIPositioningParts("Secret_Hideout", "Penny,_who_is_lost", 521, 808);
+            totalParts.add(part1);
+            totalParts.add(part2);
+            totalParts.add(part3);
+            totalParts.add(part4);
+
+        } else if (room.getRoomName().equals("Bank")) {
+            JLabel bankShot1 = new JLabel();
+            ImageIcon bShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            bankShot1.setIcon(bShot1);
+            bankShot1.setBounds(664, 440, bShot1.getIconWidth(), bShot1.getIconHeight());
+            bankShot1.setOpaque(false);
+            boardPane.add(bankShot1, new Integer(2));
+            room.GUIShots.add(bankShot1);
+
+            // ''
+            GUIPositioningRooms roomDetail = new GUIPositioningRooms("Bank", 623, 475);
+            totalRooms.add(roomDetail);
+            // ''
+            GUIPositioningParts part1 = new GUIPositioningParts("Bank", "Suspicious_Gentleman", 870, 454);
+            GUIPositioningParts part2 = new GUIPositioningParts("Bank", "Flustered_Teller", 870, 404);
+            totalParts.add(part1);
+            totalParts.add(part2);
+        } else if (room.getRoomName().equals("Church")) {
+            JLabel churchShot1 = new JLabel();
+            ImageIcon chShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            churchShot1.setIcon(chShot1);
+            churchShot1.setBounds(495, 540, chShot1.getIconWidth(), chShot1.getIconHeight());
+            churchShot1.setOpaque(false);
+            JLabel churchShot2 = new JLabel();
+            ImageIcon chShot2 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            churchShot2.setIcon(chShot2);
+            churchShot2.setBounds(539, 540, chShot2.getIconWidth(), chShot2.getIconHeight());
+            churchShot2.setOpaque(false);
+            boardPane.add(churchShot1,new Integer(2));
+            boardPane.add(churchShot2,new Integer(2));
+
+            room.GUIShots.add(churchShot1);
+            room.GUIShots.add(churchShot2);
+
+            // ''
+            GUIPositioningRooms roomDetail = new GUIPositioningRooms("Church", 523, 590);
+            totalRooms.add(roomDetail);
+            // ''
+            GUIPositioningParts part1 = new GUIPositioningParts("Church", "Dead_Man", 800, 600);
+            GUIPositioningParts part2 = new GUIPositioningParts("Church", "Crying_Woman", 800, 645);
+            totalParts.add(part1);
+            totalParts.add(part2);
+        } else if (room.getRoomName().equals("Hotel")) {
+            JLabel hotelShot1 = new JLabel();
+            JLabel hotelShot2 = new JLabel();
+            JLabel hotelShot3 = new JLabel();
+
+            ImageIcon hShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            ImageIcon hShot2 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            ImageIcon hShot3 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+
+            hotelShot1.setIcon(hShot1);
+            hotelShot2.setIcon(hShot2);
+            hotelShot3.setIcon(hShot3);
+
+            hotelShot1.setBounds(796, 548, hShot1.getIconWidth(), hShot1.getIconHeight());
+            hotelShot2.setBounds(840, 548, hShot2.getIconWidth(), hShot2.getIconHeight());
+            hotelShot3.setBounds(880, 548, hShot2.getIconWidth(), hShot2.getIconHeight());
+
+            hotelShot1.setOpaque(false);
+            hotelShot2.setOpaque(false);
+            hotelShot3.setOpaque(false);
+
+            boardPane.add(hotelShot1, new Integer(2));
+            boardPane.add(hotelShot2, new Integer(2));
+            boardPane.add(hotelShot3, new Integer(2));
+
+            room.GUIShots.add(hotelShot1);
+            room.GUIShots.add(hotelShot2);
+            room.GUIShots.add(hotelShot3);
+
+            // ''
+            GUIPositioningRooms roomDetail = new GUIPositioningRooms("Hotel", 900, 550);
+            totalRooms.add(roomDetail);
+            // ''
+            GUIPositioningParts part1 = new GUIPositioningParts("Hotel", "Sleeping_Drunkard", 910, 390);
+            GUIPositioningParts part2 = new GUIPositioningParts("Hotel", "Faro_Player", 865, 410);
+            GUIPositioningParts part3 = new GUIPositioningParts("Hotel", "Falls_from_Balcony", 910, 455);
+            GUIPositioningParts part4 = new GUIPositioningParts("Hotel", "Australian_Bartender", 865, 500);
+            totalParts.add(part1);
+            totalParts.add(part2);
+            totalParts.add(part3);
+            totalParts.add(part4);
         }
     }
 

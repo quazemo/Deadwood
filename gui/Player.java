@@ -23,62 +23,6 @@ public class Player {
 		roleName = "no current role"; // no role at start
 		turnHasHappened = false;
 	}
-	// methods
-	// Allows Player to move to adj. rooms
-	void move(GameBoard gb) { //Room location
-		// get adj rooms of cur room of Player
-		// then allow player to choose which room to go to.
-		ArrayList<String> adjRooms = null;
-		for (int p = 0; p < gb.allRooms.size(); p++) {
-			if (this.getLocation().equals(gb.allRooms.get(p).getRoomName())) {
-				adjRooms = gb.allRooms.get(p).getAdjRooms();
-			}
-		}
-		Scanner input = new Scanner(System.in);
-		int newLocNum = 0;
-		System.out.println("Please select the number of the room you would like to move to:\n");
-
-
-		for(int i = 0; i < adjRooms.size(); i++) {
-			System.out.println((i+1) + ": " + adjRooms.get(i));
-		}
-
-		newLocNum = input.nextInt();
-		while((newLocNum > (adjRooms.size() + 1)) || (newLocNum == 0) || (newLocNum < 0)){
-			System.out.println("Please enter in a valid room.\n");
-			newLocNum = input.nextInt();
-		}
-
-		location = adjRooms.get(newLocNum);
-		input.close();
-	}
-	//Allows for Player to choose a role
-	void chooseRole() {
-		System.out.println("Starring or Extra Role?");
-		//takes in user input
-		Scanner input = new Scanner(System.in);
-		String inputRole = input.toString().toLowerCase();
-		//check for valid input
-		if(!inputRole.equals("starring") && !inputRole.equals("extra")){
-			System.out.println("Please enter a valid input => Starring or Extra");
-			input = new Scanner(System.in);
-		}else{
-			this.roleName = inputRole;
-		}
-
-		input.close();
-
-	}
-	//
-	void rollDie() {
-		Die dice = new Die();
-		dice.generateRandomNumber();
-	}
-	//
-	int spend() {
-		return 0;
-	}
-	// setters
 	//
 	protected void setDollars(int newCashBalance) {
 		this.dollars = newCashBalance;

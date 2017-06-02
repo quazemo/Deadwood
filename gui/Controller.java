@@ -26,12 +26,14 @@ public class Controller {
 		//gb.initBoard();
 		DeadWindow board = new DeadWindow();
 		board.addCardsToBoard();
-		board.addShotCounters();
 		board.createButtons();
 		board.setVisible(true);
 		Days days = new Days();
 		GameBoard gb = new GameBoard();
 		gb.initBoard();
+		for (int i = 0; i < GameBoard.allRooms.size(); i++) {
+			board.addShotCounters(GameBoard.allRooms.get(i));
+		}
 		Controller missionControl = new Controller();
 		//int i = gb.allPlayers.size();
 		while (days.checkDays()) {
