@@ -26,8 +26,8 @@ public class Controller {
 		//gb.initBoard();
 		DeadWindow board = new DeadWindow();
 		board.addCardsToBoard();
+		board.addShotCounters();
 		board.createButtons();
-
 		board.setVisible(true);
 		Days days = new Days();
 		GameBoard gb = new GameBoard();

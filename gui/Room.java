@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 public class Room {
 	// attributes
@@ -9,6 +11,7 @@ public class Room {
 	ArrayList<String> adjRooms;
 	ArrayList<Player> occupants;
 	ArrayList<SceneExtras> extras;
+	ArrayList<JLabel> GUIShots;
 	boolean sceneEnd;
 
 	// constructor
@@ -22,7 +25,7 @@ public class Room {
 		sceneEnd = false;
 		cardX = x;
 		cardY = y;
-		//cardRotated = rotate;
+		GUIShots = new ArrayList<JLabel>();
 	}
 
 	// methods
@@ -64,6 +67,18 @@ public class Room {
 		return this.extras;
 	}
 	//
+	public ArrayList<JLabel> getShots() {
+		return this.GUIShots;
+	}
+	public void addShotGUI(JLabel shot) {
+		this.GUIShots.add(shot);
+	}
+	// remove last shot counter gui
+	public void removeShotGUI() {
+		int shotSize = this.GUIShots.size()-1;
+		this.GUIShots.remove(shotSize);
+	}
+	//
 	public int getShotCount() {
 		return this.shotCounters;
 	}
@@ -75,11 +90,12 @@ public class Room {
 	public boolean getSceneState() {
 		return this.sceneEnd;
 	}
-
+	//
 	public int getCardX() {
 		return this.cardX;
 	}
-	 public int getCardY() {
+	//
+	public int getCardY() {
 		return this.cardY;
-	 }
+	}
 }

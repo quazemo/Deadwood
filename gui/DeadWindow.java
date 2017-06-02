@@ -404,6 +404,83 @@ public class DeadWindow extends JFrame {
 
     }
 
+    public void addShotCounters(Room room) {
+        /* train station shots */
+        if (room.getRoomName().equals("Train_Station")) {
+            JLabel trainShot1 = new JLabel();
+            JLabel trainShot2 = new JLabel();
+            JLabel trainShot3 = new JLabel();
+
+            ImageIcon tShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            ImageIcon tShot2 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            ImageIcon tShot3 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+
+            trainShot1.setIcon(tShot1);
+            trainShot2.setIcon(tShot2);
+            trainShot3.setIcon(tShot3);
+
+            trainShot1.setBounds(30, 10, tShot1.getIconWidth(), tShot1.getIconHeight());
+            trainShot2.setBounds(71, 10, tShot2.getIconWidth(), tShot2.getIconHeight());
+            trainShot3.setBounds(113, 10, tShot3.getIconWidth(), tShot3.getIconHeight());
+
+            trainShot1.setOpaque(false);
+            trainShot2.setOpaque(false);
+            trainShot3.setOpaque(false);
+
+            boardPane.add(trainShot1, new Integer(2));
+            boardPane.add(trainShot2, new Integer(2));
+            boardPane.add(trainShot3, new Integer(2));
+
+            room.GUIShots.add(trainShot1);
+            room.GUIShots.add(trainShot2);
+            room.GUIShots.add(trainShot3);
+
+        } else if (room.getRoomName().equals("Jail")) {
+        /* jail shots */
+            JLabel jailShot1 = new JLabel();
+            ImageIcon jShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            jailShot1.setIcon(jShot1);
+            jailShot1.setBounds(290, 100, jShot1.getIconWidth(), jShot1.getIconHeight());
+            jailShot1.setOpaque(false);
+            boardPane.add(jailShot1, new Integer(2));
+            room.GUIShots.add(jailShot1);
+        } else if (room.getRoomName().equals("General_Store")) {
+            JLabel generalShot1 = new JLabel();
+            ImageIcon gsShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            generalShot1.setIcon(gsShot1);
+            generalShot1.setBounds(190, 190, gsShot1.getIconWidth(), gsShot1.getIconHeight());
+            generalShot1.setOpaque(false);
+            JLabel generalShot2 = new JLabel();
+            ImageIcon gsShot2 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            generalShot2.setIcon(gsShot2);
+            generalShot2.setBounds(230, 190, gsShot2.getIconWidth(), gsShot2.getIconHeight());
+            generalShot2.setOpaque(false);
+            boardPane.add(generalShot1,new Integer(2));
+            boardPane.add(generalShot2,new Integer(2));
+
+            room.GUIShots.add(generalShot1);
+            room.GUIShots.add(generalShot2);
+        } else if (room.getRoomName().equals("Saloon")) {
+            JLabel saloonShot1 = new JLabel();
+            ImageIcon sShot1 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            saloonShot1.setIcon(sShot1);
+            saloonShot1.setBounds(390, 130, sShot1.getIconWidth(), sShot1.getIconHeight());
+            saloonShot1.setOpaque(false);
+            JLabel saloonShot2 = new JLabel();
+            ImageIcon sShot2 = new ImageIcon(new ImageIcon("shotCounter.png").getImage().getScaledInstance(35, 36, Image.SCALE_DEFAULT));
+            saloonShot2.setIcon(sShot2);
+            saloonShot2.setBounds(430, 130, sShot2.getIconWidth(), sShot2.getIconHeight());
+            saloonShot2.setOpaque(false);
+            boardPane.add(saloonShot1,new Integer(2));
+            boardPane.add(saloonShot2,new Integer(2));
+
+            room.GUIShots.add(saloonShot1);
+            room.GUIShots.add(saloonShot2);
+        } else if (room.getRoomName().equals("")) {
+
+        }
+    }
+
     private void flipCard(String cardPNG, Room room) {
         JLabel cardLabel = new JLabel();
         ImageIcon cIcon = new ImageIcon(new ImageIcon("cards/" + cardPNG).getImage().getScaledInstance(160, 85, Image.SCALE_DEFAULT));
