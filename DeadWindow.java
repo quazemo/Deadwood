@@ -403,7 +403,6 @@ public class DeadWindow extends JFrame {
         boardPane.add(cardLabel_10, new Integer(1));
 
     }
-
     private void flipCard(String cardPNG, Room room) {
         JLabel cardLabel = new JLabel();
         ImageIcon cIcon = new ImageIcon(new ImageIcon("cards/" + cardPNG).getImage().getScaledInstance(160, 85, Image.SCALE_DEFAULT));

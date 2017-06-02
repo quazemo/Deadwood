@@ -7,13 +7,13 @@ public class Card {
     ArrayList<Role> starring;
     boolean isCardDone;
 
-
     public Card(int num, int b, String cName, ArrayList<Role> sRoles) {
         sceneNum = num;
         budget = b;
         cardName = cName;
         starring = sRoles;
         isCardDone = false;
+
     }
     // setters
     protected boolean setCardDone(boolean t) {

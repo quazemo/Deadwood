@@ -31,12 +31,9 @@ public class Days {
 	}
 	//
 	// getters
-	int getCount() {
+	int getDay() {
 		int currDay = this.dayCount;
 		return currDay;
-	}
-	int getMax() {
-		return this.maxDays;
 	}
 	//
 	boolean getGameOver() {
