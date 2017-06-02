@@ -1,8 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.io.*;
 
-public class Player {
+public class Player { //implements Comparable
+
 	// attributes
 	String name;
 	String location;
@@ -10,6 +10,7 @@ public class Player {
 	int credits;
 	int rank;
 	String roleName;
+	String guiName;
 	boolean turnHasHappened;
 
 	// constructor
@@ -19,6 +20,7 @@ public class Player {
 		dollars = money;
 		credits = creds;
 		rank = 1;
+		guiName = null;
 		roleName = "no current role"; // no role at start
 		turnHasHappened = false;
 	}
@@ -132,4 +134,15 @@ public class Player {
 	public boolean getTurn() {
 		return this.turnHasHappened;
 	}
+
+	/*@Override
+	public int compareTo(Player compareP){
+		int compareRank = ((Player)compareP).getRank();
+		return compareRank-this.rank;
+	}*/
+
+	/*@Override
+	public String toString() {
+        return "[ name=" + name + ", location=" + location + ", dollars=" + dollars + "rank" + rank + "role name" + roleName + "]";
+    }*/
 }

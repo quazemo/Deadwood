@@ -4,20 +4,25 @@ public class Room {
 	String roomName;
 	int shotCounters;
 	Card sceneCard;
+	int cardX, cardY;
+	//String cardRotated;
 	ArrayList<String> adjRooms;
 	ArrayList<Player> occupants;
 	ArrayList<Role> extras;
 	boolean sceneEnd;
 
 	// constructor
-	public Room(String name, int shots, ArrayList<String> rooms, ArrayList<Player> players, ArrayList<Role> e) {
+	public Room(String name, Card card, int shots, ArrayList<String> rooms, ArrayList<Player> players, ArrayList<Role> extrasRoles, int x, int y) {
 		shotCounters = shots;
-		sceneCard = null;
+		sceneCard = card;
 		roomName = name;
 		adjRooms = rooms;
 		occupants = players;
-		extras = e;
+		extras = extrasRoles;
 		sceneEnd = false;
+		cardX = x;
+		cardY = y;
+		//cardRotated = rotate;
 	}
 
 	// methods
@@ -30,13 +35,9 @@ public class Room {
 	}
 
 	// setters
-	protected void setRoomName(String name) {
-		this.roomName = name;
-	}
+	protected void setRoomName(String name) { this.roomName = name; }
 	//
-	protected void setAdjRooms(ArrayList<String> rooms) {
-		this.adjRooms = rooms;
-	}
+	protected void setAdjRooms(ArrayList<String> rooms) { this.adjRooms = rooms; }
 	//
 	protected void setCounter(int newCount) {
 		this.shotCounters = newCount;
@@ -78,4 +79,11 @@ public class Room {
 	public boolean getSceneState() {
 		return this.sceneEnd;
 	}
+
+	public int getCardX() {
+		return this.cardX;
+	}
+	 public int getCardY() {
+		return this.cardY;
+	 }
 }

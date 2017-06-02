@@ -8,9 +8,9 @@ public class SceneExtras {
         name = extrasName;
         taken = false;
     }
-
+    // setters
     protected void setAvailability(boolean occupied) { this.taken = occupied; }
-
+    // getters
     public int getRank() {
         return this.rank;
     }

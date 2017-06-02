@@ -14,6 +14,7 @@ public class Scene {
 		sceneName = scene;
 	}
 
+
 	// setters
 	protected void setBudget(int sceneBudget) {
 		this.budget = sceneBudget;
@@ -36,10 +37,11 @@ public class Scene {
 		int currBudget = this.budget;
 		return currBudget;
 	}
-	//
+	//total roles?
 	public ArrayList<Role> getavailableRoles() {
 		return this.availableRoles;
 	}
+	
 	//
 	public String getSceneName() {
 		return this.sceneName;

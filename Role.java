@@ -21,6 +21,7 @@ public class Role {
 	}
 	//
 	void act(Room room, Player player, Die gbDie) {
+		// TODO fix acting
 		int actingChance = gbDie.getValue() + dieRollCounter;
 		if (actingChance >= room.getSceneCard().getBudget()) {
 			// act remove a chip and credits
@@ -69,7 +70,7 @@ public class Role {
 		player.setCredits(credits);
 		player.setDollars(dollars);
 	}
-
+	//
 	public void payExtraFail(Player player) {
 		int dollars = player.getDollars();
 		dollars += 1;
@@ -77,9 +78,8 @@ public class Role {
 	}
 
 	// setters
-	protected void setOccupied(boolean state) {
-		this.occupied = state;
-	}
+	protected void setOccupied(boolean state) { this.occupied = state; }
+	//
 	// getters
 	protected int getRank() {
 		int rank = this.rank;
@@ -99,13 +99,5 @@ public class Role {
 	protected boolean isOccupied() {
 		boolean occ = this.occupied;
 		return occ;
-	}
-
-	protected void setAvailability(boolean t) {
-		this.occupied = t;
-	}
-
-	public boolean getAvailability() {
-		return this.occupied;
 	}
 }
