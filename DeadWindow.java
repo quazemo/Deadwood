@@ -496,6 +496,8 @@ public class DeadWindow extends JFrame {
                   }
 
                   totalPlayers.get(Controller.turns).setRank(rankWanted);
+                }else{
+                  System.out.println("You cannot afford it upgrade you rank.")
                 }
 
               }else{
