@@ -339,20 +339,163 @@ public class DeadWindow extends JFrame {
                 //rank 2, 3
                 }else if(totaldollars >= 10 || totalcredits >= 10){
                   System.out.println("You can afford to upgrade to rank 2  or 3");
+                  System.out.println("What rank do you want?");
+                  rankWanted = input.nextInt();
+
+                  //get the desired rank
+                  while(rankWanted != 2 || rankWanted != 3){
+                    System.out.println("Error: Invaild Rank");
+                    rankWanted = input.nextInt();
+                  }
+
+                  //decide how to pay for upgrade
+                  if(totaldollars >= 10 && totalcredits < 10){
+                    payment = "dollars";
+                  }
+                  if(totaldollars < 10 && totalcredits >= 10){
+                    payment = "credits";
+                  }
+                  if(totaldollars >= 10 && totalcredits >= 10){
+                    System.out.println("Would you like to pay in dollars or credits?");
+                    payment = input.nextLine();
+
+                    while(!input.equals("dollars") || !input.equals("credits")){
+                      System.out.println("Error: Invaild Payment");
+                      payment= input.nextLine();
+                    }
+                  }
+
+                  if(payment.equals("dollars")){
+                    totaldollars = totaldollars - 10;
+                    totalPlayers.get(Controller.turns).setDollars(totaldollars);
+                  }
+                  if(payment.equals("credits")){
+                    totalcredits = totalcredits - 10;
+                    totalPlayers.get(Controller.turns).setCredits(totalcredits);
+                  }
+
+                  totalPlayers.get(Controller.turns).setRank(rankWanted);
 
 
                 //rank 2, 3, 4
                 } else if(totaldollars >= 18 || totalcredits >= 15){
                   System.out.println("You can afford to upgrade to rank 2, 3, or 4");
+                  System.out.println("What rank do you want?");
+                  rankWanted = input.nextInt();
 
+                  //get the desired rank
+                  while(rankWanted != 2 || rankWanted != 3 || rankWanted != 4){
+                    System.out.println("Error: Invaild Rank");
+                    rankWanted = input.nextInt();
+                  }
+
+                  //decide how to pay for upgrade
+                  if(totaldollars >= 18 && totalcredits < 15){
+                    payment = "dollars";
+                  }
+                  if(totaldollars < 18 && totalcredits >= 15){
+                    payment = "credits";
+                  }
+                  if(totaldollars >= 18 && totalcredits >= 15){
+                    System.out.println("Would you like to pay in dollars or credits?");
+                    payment = input.nextLine();
+
+                    while(!input.equals("dollars") || !input.equals("credits")){
+                      System.out.println("Error: Invaild Payment");
+                      payment= input.nextLine();
+                    }
+                  }
+
+                  if(payment.equals("dollars")){
+                    totaldollars = totaldollars - 18;
+                    totalPlayers.get(Controller.turns).setDollars(totaldollars);
+                  }
+                  if(payment.equals("credits")){
+                    totalcredits = totalcredits - 15;
+                    totalPlayers.get(Controller.turns).setCredits(totalcredits);
+                  }
+
+                  totalPlayers.get(Controller.turns).setRank(rankWanted);
 
                 //rank 2, 3, 4, 5
                 }else if(totaldollars >= 28 || totalcredits >= 20){
                   System.out.println("You can afford to upgrade to rank 2, 3, 4, or 5");
+                  System.out.println("What rank do you want?");
+                  rankWanted = input.nextInt();
+
+                  //get the desired rank
+                  while(rankWanted < 2 || rankWanted > 5){
+                    System.out.println("Error: Invaild Rank");
+                    rankWanted = input.nextInt();
+                  }
+
+                  //decide how to pay for upgrade
+                  if(totaldollars >= 28 && totalcredits < 20){
+                    payment = "dollars";
+                  }
+                  if(totaldollars < 28 && totalcredits >= 20){
+                    payment = "credits";
+                  }
+                  if(totaldollars >= 28 && totalcredits >= 20){
+                    System.out.println("Would you like to pay in dollars or credits?");
+                    payment = input.nextLine();
+
+                    while(!input.equals("dollars") || !input.equals("credits")){
+                      System.out.println("Error: Invaild Payment");
+                      payment= input.nextLine();
+                    }
+                  }
+
+                  if(payment.equals("dollars")){
+                    totaldollars = totaldollars - 28;
+                    totalPlayers.get(Controller.turns).setDollars(totaldollars);
+                  }
+                  if(payment.equals("credits")){
+                    totalcredits = totalcredits - 20;
+                    totalPlayers.get(Controller.turns).setCredits(totalcredits);
+                  }
+
+                  totalPlayers.get(Controller.turns).setRank(rankWanted);
 
                 //rank 2, 3, 4, 5, 6
                 } else if(totaldollars >= 40 || totalcredits >= 25){
                   System.out.println("You can afford to upgrade to rank 2, 3, 4, 5, or 6");
+                  System.out.println("What rank do you want?");
+                  rankWanted = input.nextInt();
+
+                  //get the desired rank
+                  while(rankWanted < 2 || rankWanted > 6){
+                    System.out.println("Error: Invaild Rank");
+                    rankWanted = input.nextInt();
+                  }
+
+                  //decide how to pay for upgrade
+                  if(totaldollars >= 40 && totalcredits < 25){
+                    payment = "dollars";
+                  }
+                  if(totaldollars < 40 && totalcredits >= 25){
+                    payment = "credits";
+                  }
+                  if(totaldollars >= 40 && totalcredits >= 25){
+                    System.out.println("Would you like to pay in dollars or credits?");
+                    payment = input.nextLine();
+
+                    while(!input.equals("dollars") || !input.equals("credits")){
+                      System.out.println("Error: Invaild Payment");
+                      payment= input.nextLine();
+                    }
+                  }
+
+                  if(payment.equals("dollars")){
+                    totaldollars = totaldollars - 40;
+                    totalPlayers.get(Controller.turns).setDollars(totaldollars);
+                  }
+                  if(payment.equals("credits")){
+                    totalcredits = totalcredits - 25;
+                    totalPlayers.get(Controller.turns).setCredits(totalcredits);
+                  }
+
+                  totalPlayers.get(Controller.turns).setRank(rankWanted);
                 }
 
               }else{
