@@ -494,11 +494,11 @@ public class DeadWindow extends JFrame {
                     totalcredits = totalcredits - 25;
                     totalPlayers.get(Controller.turns).setCredits(totalcredits);
                   }
-                  
+
                   totalPlayers.get(Controller.turns).setRank(rankWanted);
 
                 }else{
-                  System.out.println("You cannot afford it upgrade you rank.")
+                  System.out.println("You cannot afford it upgrade you rank.");
                 }
 
               }else{
