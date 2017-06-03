@@ -1,12 +1,10 @@
-Main_Street 3 Saloon Trailer Jail 1 Railroad_Worker 2 Falls_off_Roof 2 Women_in_Black_Dress 4 Mayor_McGinty
-Saloon 2 Trailer Main_Street General_Store Bank 1 Reluctant_Farmer 2 Women_in_Red_Dress
-Trailer -1 Hotel Saloon Main_Street
-Casting_Office -1 Ranch Train_Station Secret_Hideout
-Ranch 2 Casting_Office Secret_Hideout General_Store Bank 1 Shot_in_Leg 2 Saucy_Fred 3 Man_Under_Horse
-Secret_Hideout 3 Church Casting_Office Ranch 1 Clumsy_Pit_Fighter 2 Thug_with_Knife 3 Dangerous_Tom 4 Penny,_who_is_Lost
-Bank 1 Hotel Church Ranch Saloon 3 Flustered_Teller 2 Suspicious_Gentleman
-Church 2 Bank Hotel Secret_Hideout 1 Dead_Man 2 Crying_Woman
-Hotel 3 Bank Church Trailer 1 Sleeping_Drunkard 1 Faro_Player 2 Falls_from_Balcony 3 Australian_Bartender
-Train_Station 3 Casting_Office General_Store Jail 1 Crusty_Prospector 1 Dragged_by_Train 2 Preacher_with_Bag 4 Cyrus_the_Gunfigher
-Jail 1 Main_Street General_Store Train_Station 2 Prisoner_in_Cell 3 Feller_in_Irons
-General_Store 2 Ranch Saloon Jail Train_Station 1 Man_in_Overalls 2 Mister_Keach
+Main_Street 3 Saloon Trailer Casting_Office 1 Railroad_Worker 2 Falls_off_Roof 2 Women_in_Black_Dress 4 Mayor_McGinty
+Saloon 2 Trailer Main_Street Train_Station 1 Reluctant_Farmer 2 Women_in_Red_Dress
+Ranch 2 Casting_Office Secret_Hideout 1 Long_Shot 2 Saucy_Fred 3 Man_Under_Horse
+Secret_Hideout 3 Trailer Bank Hotel Casting_Office Ranch 1 Clumsy_Pit_Fighter 2 Thug_with_Knife 3 Dangerous_Tom 4 Penny,_who_is_Lost
+Bank 1 Secret_Hideout Hotel Church Jail 3 Flustered_Teller 2 Suspicious_Gentleman
+Church 2 Bank Hotel General_Store 1 Dead_Man 2 Crying_Woman
+Hotel 3 Bank Church Secret_Hideout 1 Sleeping_Drunkard 1 Faro_Player 2 Falls_from_Balcony 3 Australian_Bartender
+Train_Station 3 Saloon General_Store Jail 1 Crusty_Prospector 1 Dragged_by_Train 2 Preacher_with_Bag 4 Cyrus_the_Gunfigher
+Jail 1 Trailer General_Store Train_Station Bank 2 Prisoner_in_Cell 3 Feller_in_Irons
+General_Store 2 Church Jail Train_Station 1 Man_in_Overalls 2 Mister_Keach
