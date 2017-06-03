@@ -1,7 +1,14 @@
-
-/* Controller Class should just initialize objects
- * and run main menu and loops until days are over
- */
+ /*************************************************
+  * Deadwood - Model
+  *
+  * Initializes game board, and respnsible for the
+	* back end of the of the Deadwood implementation
+	*
+	*
+	* Has an aggregartional relationship with
+  * GameBoard
+	*
+  ************************************************/
 import com.sun.management.MissionControl;
 
 import java.io.File;
@@ -10,256 +17,42 @@ import java.util.*;
 
 public class Controller {
 
-	// attributes
+	/* Attributes */
 	public static int turns;
 	private int cardsFinished;
-	private static ArrayList<Player> allPlayers;
 	private static int numCards;
 
-	// constructor
+	/* Constructor */
 	public Controller() {
 		turns = 0;
 		cardsFinished = 0;
 		numCards = 10;
-
 	}
-	// methods
-	/* main */
+
+	/* Main */
 	public static void main(String[] args) {
 		DeadWindow board = new DeadWindow();
 		board.addCardsToBoard();
 		board.createButtons();
-		allPlayers = board.getAllPlayers();
-
 		board.setVisible(true);
 		Days days = new Days();
+
+		/*Initializes a Deadwood game board*/
 		GameBoard gb = new GameBoard();
 		gb.initBoard();
+
+		/* Adding the shot circles on the board */
+		for (int i = 0; i < GameBoard.allRooms.size(); i++) {
+			board.addShotCounters(GameBoard.allRooms.get(i));
+		}
+
 		Controller missionControl = new Controller();
-		//int i = gb.allPlayers.size();
 		while (days.checkDays()) {
-			// take turns
-
-			/*
-			if (endDayState(gb)) {
-				int d = days.getDay() + 1;
-				days.setDay(d);
-			} else {
-				/*boolean checkTurns = menu(gb.allPlayers.get(i), gb);
-				if (checkTurns) {
-					i--;
-				}
-				if (i == 1) {
-					i = gb.allPlayers.size();
-				}
-				*/
 		}
 	}
-	/*
-	private static boolean menu(Player player, GameBoard gb) {
-		System.out.println("------WELCOME TO DEADWOOD------");
-		String location = player.getLocation();
-		Scanner playerInput = null;
-		playerInput.toString().toLowerCase();
-		boolean moved = false;
-		boolean acted = false;
-		boolean upgraded = false;
-		boolean rehearsed = false;
-		String[] options = {"who = displays current player.",
-				"where = what room is current player in.",
-				"move = move to adjacent room.",
-				"work = choose a role to work.",
-				"upgrade = upgrade rank via credits or cash.",
-				"rehearse = add a rehearse chip.",
-				"act = player performs acting role.",
-				"end = end players turn."};
-		while (!playerInput.equals("end")) {
 
-			playerInput = new Scanner(System.in);
-			System.out.print("Enter one of the following commands: ");
-			// if player is in an acting role
-			if (!player.getRole().equals("no current role")) {
-				System.out.println(options[0]); // who
-				System.out.println(options[1]); // where
-				System.out.println(options[5]); // rehearse
-				System.out.println(options[6]); // act
-				System.out.println(options[7]); // end
-				switch (playerInput.toString()) {
-					case "who":
-						System.out.println("It is currently " + player.getPlayerName() + "'s turn.");
-						break;
-					case "where":
-						System.out.println("You are in the " + player.getLocation());
-						break;
-					case "rehearse":
-						if (!rehearsed) {
-							for (int j = 0; j < gb.allRooms.size(); j++) {
-								if (player.getLocation().equals(gb.allRooms.get(j).getRoomName())) {
-									for (int k = 0; k < gb.allRooms.get(j).getSceneCard().getStarringRoles().size(); k++) {
-										if (player.getRole().equals(gb.allRooms.get(j).getSceneCard().getRole(k))) {
-											gb.allRooms.get(j).getSceneCard().getRoleObj(k).rehearse();
-											rehearsed = true;
-										}
-									}
-								}
-							}
-						} else {
-							System.out.println("You already rehearsed this turn.");
-						}
-						break;
-					case "act":
-						if (!acted) {
-							Die die = new Die();
-							for (int j = 0; j < gb.allRooms.size(); j++) {
-								if (player.getLocation().equals(gb.allRooms.get(j).getRoomName())) {
-									for (int k = 0; k < gb.allRooms.get(j).getSceneCard().getStarringRoles().size(); k++) {
-										if (player.getRole().equals(gb.allRooms.get(j).getSceneCard().getRole(k))) {
-											gb.allRooms.get(j).getSceneCard().getRoleObj(k).act(gb.allRooms.get(j), player, die);
-											acted = true;
-										}
-									}
-								}
-							}
-						} else {
-							System.out.println("You have already acted this turn.");
-						}
-						break;
-					case "end":
-						playerInput.close();
-						return true;
-				}
-			// if player is not acting and is in the casting office
-			} else if (player.getRole().equals("no current role") && (location.equals("Casting_Office"))) {
-				System.out.println(options[0]); // who
-				System.out.println(options[1]); // where
-				System.out.println(options[3]); // move
-				System.out.println(options[4]); // upgrade
-				System.out.println(options[7]); // end
-				switch (playerInput.toString()) {
-					case "who":
-						System.out.println("It is currently " + player.getPlayerName() + "'s turn.");
-						break;
-					case "where":
-						System.out.println("You are in the " + player.getLocation());
-						break;
-					case "move":
-						if (!moved) {
-							player.move(gb);
-							moved = true;
-						} else {
-							System.out.println("You have already moved this turn.");
-						}
-						break;
-					case "upgrade":
-						break;
-					case "end":
-						playerInput.close();
-						return true;
-				}
-			// if player is not acting and is in the trailer
-			} else if (player.getRole().equals("no current role") && (location.equals("Trailer"))) {
-				System.out.println(options[0]); // who
-				System.out.println(options[1]); // where
-				System.out.println(options[3]); // move
-				System.out.println(options[7]); // end
-				switch (playerInput.toString()) {
-					case "who":
-						System.out.println("It is currently " + player.getPlayerName() + "'s turn.");
-						break;
-					case "where":
-						System.out.println("You are in the " + player.getLocation());
-						break;
-					case "move":
-						if (!moved) {
-							player.move(gb);
-							moved = true;
-						} else {
-							System.out.println("You have already moved this turn.")
-						}
-						break;
-					case "end":
-						playerInput.close();
-						return true;
-				}
-			// if player is not acting, and is not in the trailer/casting office
-			} else if (player.getRole().equals("no current role")) {
-				System.out.println(options[0]); // who
-				System.out.println(options[1]); // where
-				System.out.println(options[4]); // work
-				System.out.println(options[3]); // move
-				System.out.println(options[7]); // end
-				switch (playerInput.toString()) {
-					case "who":
-						System.out.println("It is currently " + player.getPlayerName() + "'s turn.");
-						break;
-					case "where":
-						System.out.println("You are in the " + player.getLocation());
-						break;
-					case "work":
-						Scanner userInput = new Scanner(System.in);
-						for (int j = 0; j < gb.allRooms.size(); j++) {
-							if (player.getLocation().equals(gb.allRooms.get(j).getRoomName())) {
-								ArrayList<Role> availableRoles = gb.allRooms.get(j).getSceneCard().getStarringRoles();
-								ArrayList<SceneExtras> extraRoles = gb.allRooms.get(j).getExtras();
-								System.out.println("Choose a value from the below list: ");
-								int sRoles = 0;
-								int k = 0;
-								for (; k < availableRoles.size(); k++) {
-									System.out.println("Starring: ");
-									if ((!availableRoles.get(k).isOccupied()) && (player.getRank() >= availableRoles.get(k).getRank())) {
-										sRoles++;
-										System.out.print(sRoles + ": ");
-										System.out.println(availableRoles.get(k).getName());
-									} else {
-										System.out.println("No available starring roles on set.");
-									}
-								}
-								int eRoles = k;
-								for (int l = 0; l < extraRoles.size(); l++) {
-									System.out.println("Extras: ");
-									if (!extraRoles.get(l).getAvailability() && player.getRank() >= extraRoles.get(l).getRank()) {
-										eRoles++;
-										System.out.print(eRoles + ": ");
-										System.out.println(extraRoles.get(l).getName());
-									} else {
-										System.out.println("No available extra roles on set.");
-									}
-								}
-								int job = 0;
-								job = userInput.nextInt();
-								while((job <= 0) || (job > eRoles)) {
-									System.out.println("please select an available option from above.");
-									job = userInput.nextInt();
-								}
-								if (job > 0 && job <= sRoles) {
-									player.setRole(availableRoles.get(job).getName());
-									availableRoles.get(job).setOccupied(true);
-								} else if ((job > sRoles) && (job <= eRoles)) {
-									player.setRole(extraRoles.get(job).getName());
-									extraRoles.get(job).setAvailability(true);
-								}
-							}
-						}
-					case "move":
-						if (!moved) {
-							player.move(gb);
-							moved = true;
-						} else {
-							System.out.println("You already moved this turn.");
-						}
-						break;
-					case "end":
-						playerInput.close();
-						return true;
-				}
-			}
-		}
-		return false;
-	}
-	*/
-
-
-	// make deck
+	/* Methods */
+	/* Creates a deck of all the Scene Cards*/
 	private ArrayList<Card> createDeck() {
 		File f = new File("Scene_Cards.txt");
 		ArrayList<Role> starring = new ArrayList<Role>();
@@ -299,6 +92,17 @@ public class Controller {
 		return deck;
 	}
 
+	/* Randomly selects a card from a deck */
+	protected Card selectCard(ArrayList<Card> d) {
+		Random randGenerate = new Random();
+		int index = randGenerate.nextInt(d.size());
+		Card selectedCard = d.get(index);
+		d.remove(index);
+
+		return selectedCard;
+	}
+
+	/* Checks if the Day is ready to end */
 	protected static boolean endDayState(GameBoard gb) {
 		boolean dayOver = false;
 		int availableScenes = 10;
@@ -314,20 +118,22 @@ public class Controller {
 		return false;
 	}
 
+	/* Closes the room and gives out appropriate bonuses */
 	void endScene(Room currRoom, Player currPlayer){
 		Card cardRoom = currRoom.getSceneCard();
 		ArrayList<Player> playersInside = currRoom.getOccupants();
 		ArrayList<Role> sRoles = cardRoom.getStarringRoles();
 		ArrayList<Player> sPlayers = new ArrayList<Player>();
 		boolean validBonus = getBonus(cardRoom);
+
 		if(validBonus){
+
 			//get starr players
 			for(int i = 0; i < playersInside.size(); i++){
 				if(playersInside.get(i).getRole().equals("starring")){
 					sPlayers.add(playersInside.get(i));
 				}
 			}
-			//
 			int calcBonus = starBonus(currPlayer, sPlayers, cardRoom.getBudget());
 			currPlayer.incDollars(calcBonus);
 
@@ -340,10 +146,11 @@ public class Controller {
 				playersInside.get(i).setRole("no current role");
 			}
 		}
-		//decement total num cards
+		//decement total total number of Cards on the board
 		numCards = numCards - 1;
 	}
 
+	/* Calculates bonus for starring roles */
 	protected int starBonus(Player curr, ArrayList<Player> starPlayers, int b){
 		ArrayList<Die> dieVals = new ArrayList<Die>();
 		Player p = null;
@@ -356,8 +163,8 @@ public class Controller {
 			dieVals.add(die);
 		}
 
+		//sorting star dice rolls in descending order
 		Collections.sort(dieVals);
-		Collections.reverse(dieVals);
 
 		while(!dieVals.isEmpty()){
 			Die d = dieVals.remove(0);
@@ -366,14 +173,14 @@ public class Controller {
 			if(!starPlayers.isEmpty()){
 				p = starPlayers.remove(0);
 			}
-			//d.remove();
+
 			Collections.sort(starPlayers);
 			if(p.getPlayerName() == curr.getPlayerName()){
 				calcBonus = calcBonus + dols;
 			}else{
 				for (int i = 0; i < i++;){
-					if(p.getPlayerName() == allPlayers.get(i).getPlayerName()){
-						allPlayers.get(i).incDollars(dols);
+					if(p.getPlayerName() == DeadWindow.totalPlayers.get(i).getPlayerName()){
+						DeadWindow.totalPlayers.get(i).incDollars(dols);
 					}
 				}
 			}
@@ -381,7 +188,8 @@ public class Controller {
 		return calcBonus;
 	}
 
-
+	
+	/* Checks for bonuses should be given */
 	protected boolean getBonus(Card c){
 		boolean bonus = false;
 		ArrayList<Role> stars = c.getStarringRoles();
@@ -394,7 +202,7 @@ public class Controller {
 		return bonus;
 	}
 
-	//calculates scores and displays winner with the highest score for the end of the game
+	/* Calculates total score of all the Players, displays the winner, and closes the game */
 	protected static void endGame(ArrayList<Player> all){
 		int topScore = 0;
 		Player winner = null;
@@ -411,5 +219,4 @@ public class Controller {
 		System.out.println(winner.getPlayerName() + "Thanks for playing!\n\n Goodbye.");
 		System.exit(0);
 	}
-
 }

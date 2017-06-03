@@ -1,12 +1,17 @@
+/*************************************************
+ * Scene Object
+ *
+ * Responsible for the information of a scene
+ ************************************************/
 import java.util.ArrayList;
 public class Scene {
-	// attributes
+	/* Attributes */
 	int budget;
 	boolean sceneAvailable;
 	ArrayList<Role> availableRoles;
 	String sceneName;
 
-	// constructor
+	/* Constructor */
 	public Scene(int budg, String scene) {
 		budget = budg;
 		sceneAvailable = true;
@@ -14,39 +19,36 @@ public class Scene {
 		sceneName = scene;
 	}
 
-
-	// setters
+	/* Methods */
 	protected void setBudget(int sceneBudget) {
 		this.budget = sceneBudget;
 	}
-	//
+
 	protected void setAvailableRoles(ArrayList<Role> roles) {
 		this.availableRoles = roles;
 	}
-	//
+
 	protected void setSceneName(String name) {
 		this.sceneName = name;
 	}
-	//
+
 	protected void setSceneAvailability(boolean available) {
 		this.sceneAvailable = available;
 	}
-	// getters
-	//
+
 	public int getBudget() {
 		int currBudget = this.budget;
 		return currBudget;
 	}
-	//total roles?
+
 	public ArrayList<Role> getavailableRoles() {
 		return this.availableRoles;
 	}
-	
-	//
+
 	public String getSceneName() {
 		return this.sceneName;
 	}
-	//
+
 	public boolean getSceneAvailability() {
 		return this.sceneAvailable;
 	}

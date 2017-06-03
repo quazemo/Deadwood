@@ -1,41 +1,47 @@
+/*************************************************
+ * Days Object
+ *
+ * Responsible for the information of a day and
+ * has a conditional to check for the end of game
+ ************************************************/
+
 public class Days {
-	// attributes
+	/* Attributes */
 	static int dayCount;
 	static int maxDays;
 	boolean gameOver;
 
-	// constructor
+	/* Constructor */
 	public Days() {
 		dayCount = 0;
-		maxDays = 3; // will be variable later
+		maxDays = 3;
 		gameOver = false;
 	}
 
-	// methods
+	/* Methods */
 	boolean checkDays() {
 		if (dayCount > maxDays) {
 			return true;
 		}
 		return false;
 	}
-	//
+
 	void endDay() {
 		dayCount++;
 		if (checkDays()) {
 			gameOver = true;
 		}
 	}
-	// setters
+
 	void setDay(int days) {
 		this.dayCount = days;
 	}
-	//
-	// getters
+
 	int getDay() {
 		int currDay = this.dayCount;
 		return currDay;
 	}
-	//
+
 	boolean getGameOver() {
 		boolean game = this.gameOver;
 		return game;

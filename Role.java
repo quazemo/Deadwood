@@ -1,3 +1,9 @@
+/*************************************************
+ * Role Object
+ *
+ * Responsible for the information of a role
+ ************************************************/
+
 public class Role {
 	// attributes
 	int rank;

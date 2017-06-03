@@ -1,25 +1,34 @@
+/*************************************************
+ * Die Object
+ *
+ * Responsible for all Days information and
+ * has a conditional to check for the end of game
+ ************************************************/
 import java.util.Random;
+
 public class Die extends Random implements Comparable<Die>{
-	// attributes
+	/* Attributes */
 	int dieValue;
-	// constructor
+
+	/* Constructor */
 	public Die() {
 		dieValue = 0;
 	}
 
-	// methods
+	/* Methods */
 	void generateRandomNumber() {
 		Random rand = new Random();
 		dieValue = rand.nextInt(5) + 1;
 	}
-	// getter
+
 	int getValue() {
-		return this.dieValue;
+		return dieValue;
 	}
+
 	@Override
 	public int compareTo(Die compareD){
 		int compareVal = ((Die)compareD).getValue();
-		/* For Descending order do like this */
+		// for descending order
 		return (compareVal-this.dieValue);
 	}
 }

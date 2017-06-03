@@ -1,13 +1,18 @@
+/*************************************************
+ * GUIPlayer Object
+ *
+ * Responsible the GUIPlayer information for the
+ * in order to implement DeadWindow
+ ************************************************/
 import javax.swing.*;
 
-/**
- * Created by brendanbaalke on 5/31/17.
- */
 public class GUIPlayer {
+    /* Attributes */
     JLabel player;
     ImageIcon guiName;
     int xPos, yPos;
 
+    /* Constructor */
     GUIPlayer(JLabel pl, ImageIcon png, int x, int y) {
         player = pl;
         guiName = png;
@@ -15,6 +20,7 @@ public class GUIPlayer {
         yPos = y;
     }
 
+    /* Methods */
     protected void setPlayer(JLabel pl) {
         this.player = pl;
     }

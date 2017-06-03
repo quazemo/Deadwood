@@ -1,26 +1,33 @@
+/*************************************************
+ * Card Object
+ *
+ * Responsible for the information of a scene card
+ ************************************************/
+
 import java.util.*;
 
 public class Card {
+    /* Attributes */
     int sceneNum;
     int budget;
     String cardName;
     ArrayList<Role> starring;
     boolean isCardDone;
 
+    /* Constructor */
     public Card(int num, int b, String cName, ArrayList<Role> sRoles) {
         sceneNum = num;
         budget = b;
         cardName = cName;
         starring = sRoles;
         isCardDone = false;
-
     }
-    // setters
+
+    /* Methods */
     protected boolean setCardDone(boolean t) {
         return this.isCardDone = t;
     }
 
-    // getters
     protected String getCardName() {
         return this.cardName;
     }
